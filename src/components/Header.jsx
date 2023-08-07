@@ -18,7 +18,14 @@ function handleNavState() {
 	return (
 		<div className=''>
 			<nav className=' flex items-center  px-4 bg-slate-500 h-16'>
+        <div className='flex w-full p-4 items-center justify-between'>
+          <div className='left-nav-section'>
+          <a href='#home'>Fetchcoin</a>
+          </div>
+          <div className='right-nav-section'>
           <a href='#home' id='hamburger-menu' className='text-4xl flex align-middle' onClick={() => handleNavState()}><GiHamburgerMenu /></a>
+          </div>
+        </div>
 				<section className='mobile-menu lg:hidden'>
           <ul className={navOpen ? 'show-mobile-nav' : 'hidden'}>
               <li className="border-b border-gray-400 my-4">

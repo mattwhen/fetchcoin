@@ -28,13 +28,13 @@ function handleNavState() {
         </div>
 				<section className='mobile-menu lg:hidden'>
           <ul className={navOpen ? 'show-mobile-nav bg-neutral-500' : 'hide-mobile-nav'}>
-              <li className="border-b border-gray-400 my-4">
+              <li className="border-b border-gray-400">
                 <a href="/about">ABOUT</a>
               </li>
-              <li className="border-b border-gray-400 my-4">
+              <li className="border-b border-gray-400 ">
                 <a href="/portfolio">CRYPTOCURRENCIES</a>
               </li>
-              <li className="border-b border-gray-400 my-4">
+              <li className="border-b border-gray-400 ">
                 <a href="/contact">CONTACT</a>
               </li>
             </ul>
@@ -45,7 +45,7 @@ function handleNavState() {
         .hide-mobile-nav{
           position: absolute;
           width: 100%;
-          height: 100vh; 
+          height: 50vh; 
           top: 4rem;
           left: -100%;
           background: #495057;
@@ -60,11 +60,10 @@ function handleNavState() {
       .show-mobile-nav {
           position: absolute;
           width: 100%;
-          height: 100vh; 
+          height: 50vh; 
           top: 4rem;
           font-size: 20px;
           left: 0;
-          // background: #495057;
           z-index: 10;
           display: flex;
           flex-direction: column;

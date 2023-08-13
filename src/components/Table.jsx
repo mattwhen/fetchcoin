@@ -10,7 +10,7 @@ const Table = () => {
 		// Pass two arguments into our useEffect() hook: a Function and Array.
 		// callback function is called after the component renders.
 		// The second argument is called our dependencies array. This array should include all of the values that our side effect relies upon.
-		const url = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=10';
+		const url = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50';
 		fetch(url)
 			.then((response) => response.json())
 			.then((json) => {
@@ -30,13 +30,13 @@ const Table = () => {
 
 	return (
 		<div className='overflow-x-auto border-2 border-slate-950 rounded-sm mx-2'>
-			<table className='table-fixed'>
+			<table className='table-auto'>
 				<thead>
 					<tr>
-						<th className=' bg-slate-500 text-white py-3'>Rank</th>
-						<th className=' bg-slate-500 text-white py-3'>Name</th>
-						<th className=' bg-slate-500 text-white py-3'>Price</th>
-						<th className=' bg-slate-500 text-white py-3'>Market Cap</th>
+						<th className=' text-gray-500 font-medium text-center'>Rank</th>
+						<th className=' text-gray-500 font-medium text-left pl-12'>Name</th>
+						<th className=' text-gray-500 font-medium text-center pr-8'>Price</th>
+						<th className=' text-gray-500 font-medium'>Market Cap</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -44,7 +44,7 @@ const Table = () => {
 						<>
 							<tr>
 								<td className='RANK'>
-									<div className='p-5'>{item.rank}</div>
+									<div className='p-4 pl-5'>{item.rank}</div>
 								</td>
 								<td>
 									<div className='NAME flex items-center pl-5 mr-10 w-32'>
@@ -55,17 +55,19 @@ const Table = () => {
 												alt='crypto-icon'
 											></img>
 										</div>
-                                        <div className='flex flex-col'>
-										<span className='text-md'>{item.symbol}</span>
-										<span className='text-sm'>{item.name}</span>
-                                        </div>
+										<div className='flex flex-col'>
+											<span className='text-md'>{item.symbol}</span>
+											<span className='text-sm'>{item.name}</span>
+										</div>
 									</div>
 								</td>
 								<td className='PRICE'>
-									{/* toFixed() method rounds the number to the 2 decimal places */}
-									${item.price.toFixed(2)}
+									<div className=' mr-9 text-center'>
+										{/* Rounds price to two decimal places */}$
+										{numberWithCommas(item.price.toFixed(2))}
+									</div>
 								</td>
-								<td>${numberWithCommas(item.marketCap)}</td>
+								<td>${numberWithCommas(item.marketCap.toFixed(2))}</td>
 							</tr>
 						</>
 					))}

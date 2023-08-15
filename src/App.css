@@ -5,3 +5,11 @@
 * {
     box-sizing: border-box;
 }
+
+.green-change {
+    background-color: rgba(52,199,89,0.1);
+}
+
+.red-change {
+    background-color: rgba(255,53,53,0.1);
+}

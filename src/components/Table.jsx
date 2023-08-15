@@ -20,9 +20,18 @@ const Table = () => {
 			.catch((error) => console.error(error));
 	}, []);
 
-	// Adds comma formatting to current Price and Market Cap columns.
+	// Adds comma formatting to "Price" column.
 	function numberWithCommas(num) {
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+	}
+	
+	function renderClassName(currentChange) {
+		return currentChange > 0 ? 'green-change' : 'red-change';
+	}
+
+	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method. 
+	function renderMarketCap(marketCap) {
+		return Intl.NumberFormat("en", {notation: "compact"}).format(marketCap)
 	}
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
@@ -88,19 +97,21 @@ const Table = () => {
 									</div>
 								</td>
 								<td>
+									<div className='flex justify-start w-36'>
 									<span
 									// Sets the class depending on whether the price is POSITIVE or NEGATIVE. 
-										className={
-											item.priceChange1d > 0 ? 'green-change' : 'red-change'
-										}
+										className={renderClassName(item.priceChange1d)}
 									>
-										{item.priceChange1d}
+										{item.priceChange1d}%
 									</span>
+									</div>
 								</td>
 								<td>
 									<span className='font-semi'>
 										{/* Rounds price to two decimal places */}$
-										{numberWithCommas(item.marketCap.toFixed(2))}
+										{/* {numberWithCommas(item.marketCap.toFixed(2))}
+										 */}
+										 {renderMarketCap(item.marketCap)}
 									</span>
 								</td>
 							</tr>

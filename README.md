@@ -10,7 +10,7 @@
 👋🏼   Welcome to Fetchcoin! A web application that fetches (hence the name and the JavaScript fetch API) cryptocurrency data using the [Coinstats API](https://documenter.getpostman.com/view/5734027/RzZ6Hzr3) and renders the data onto a webpage to the user, it includes information such as the ticker symbol, icon, current price, the percentage change, and the market cap of the coin. What inspired me to create this application is due to my interest in Cryptocurrency and having a strong interest in finance. I also thought it would be a great opportunity for me to futher enhance my knowledge with React Hooks such as useState and useEffect. Additionally, to learn how Asynchronous JavaScript works behind the scenes. <br> <br>
 
 <p align='center'>
-<img src='./images/fetchcoin-mobile-layout-demo.png' width='480'>
+<img src='./src/images/fetchcoin-mobile-layout-demo.png' width='480'>
 </p>
 
 
@@ -20,7 +20,7 @@ To run the application locally, you can clone the repo using the link [here](htt
 From there, click on the Git Clone button using your preferred method as shown below to clone the application. <br><br>
 
 <p align='center'>
-<img src='./images/gitClone.png'>
+<img src='./src/images/gitClone.png'>
 </p>
 <br>
 

@@ -21,3 +21,11 @@
     border-radius: 5px;
     font-weight: 600;
 }
+
+.no-change {
+    background-color: rgba(67, 65, 65, 0.1);
+    color: grey;
+    padding: 6px;
+    border-radius: 5px;
+    font-weight: 600;
+}

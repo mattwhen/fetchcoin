@@ -6,11 +6,13 @@ const Table = () => {
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		// Called above the returned JSX syntax
 		// Pass two arguments into our useEffect() hook: a Function and Array.
 		// callback function is called after the component renders.
 		// The second argument is called our dependencies array. This array should include all of the values that our side effect relies upon.
+
 		const url = 'https://api.coinstats.app/public/v1/coins?skip=0&limit=50';
+
+		// Render data initially.
 		fetch(url)
 			.then((response) => response.json())
 			.then((json) => {
@@ -18,29 +20,44 @@ const Table = () => {
 				setLoading(false);
 			})
 			.catch((error) => console.error(error));
+
+		// Update the data in the table every 10 seconds.
+		let intervalData = setInterval(() => {
+			fetch(url)
+				.then((response) => response.json())
+				.then((json) => {
+					setData(json);
+				})
+				.then(console.log('fetched data', new Date().getSeconds()))
+				.catch((error) => console.error(error));
+		}, 10000);
+
+		return () => {
+			clearInterval(intervalData);
+		};
 	}, []);
 
 	// Adds comma formatting to "Price" column.
 	function numberWithCommas(num) {
 		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
-	
+
 	// Handles assigning classes to each of the price change elements depending if there was a positive, negative, or no change in it's price.
 	function renderClassName(currentChange) {
-		if(currentChange === 0) return 'no-change'
+		if (currentChange === 0) return 'no-change';
 		return currentChange > 0 ? 'green-change' : 'red-change';
 	}
 
-	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method. 
+	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
 	function renderMarketCap(marketCap) {
-		return Intl.NumberFormat("en", {notation: "compact"}).format(marketCap)
+		return Intl.NumberFormat('en', { notation: 'compact' }).format(marketCap);
 	}
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
 	if (loading) return <h1>Fetching data...</h1>;
 
 	// <------------------------------------ REMOVE WHEN COMPLETE ------------------------------>
-	console.log('COIN DATA', data.coins);
+	// console.log('COIN DATA', data.coins);
 
 	return (
 		// Table Headers section
@@ -100,12 +117,12 @@ const Table = () => {
 								</td>
 								<td>
 									<div className='flex justify-start w-36'>
-									<span
-									// Sets the class depending on whether the price is POSITIVE or NEGATIVE. 
-										className={renderClassName(item.priceChange1d)}
-									>
-										{item.priceChange1d}%
-									</span>
+										<span
+											// Sets the class depending on whether the price is POSITIVE or NEGATIVE.
+											className={renderClassName(item.priceChange1d)}
+										>
+											{item.priceChange1d}%
+										</span>
 									</div>
 								</td>
 								<td>
@@ -113,7 +130,7 @@ const Table = () => {
 										{/* Rounds price to two decimal places */}$
 										{/* {numberWithCommas(item.marketCap.toFixed(2))}
 										 */}
-										 {renderMarketCap(item.marketCap)}
+										{renderMarketCap(item.marketCap)}
 									</span>
 								</td>
 							</tr>

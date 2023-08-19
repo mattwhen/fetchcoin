@@ -10,10 +10,6 @@ const Nav = () => {
 	// 2. The set function that lets you update the state to a different value
 	const [navOpen, setNavOpen] = useState(false);
 
-	function handleNavState() {
-		return navOpen ? setNavOpen(false) : setNavOpen(true);
-	}
-
 	return (
 		<div className=''>
 			<nav className=' flex items-center  px-4 h-16 shadow-lg'>
@@ -27,8 +23,8 @@ const Nav = () => {
 						<a
 							href='#home'
 							id='hamburger-menu'
-							className='text-4xl flex align-middle text-gray-500'
-							onClick={() => handleNavState()}
+							className='text-4xl flex align-middle text-gray-500 lg:hidden'
+							onClick={() => navOpen ? setNavOpen(false) : setNavOpen(true)}
 						>
               {navOpen ? <RxCross1/> : <GiHamburgerMenu/>}
 						</a>

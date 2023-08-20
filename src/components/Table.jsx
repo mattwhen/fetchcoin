@@ -75,7 +75,7 @@ const Table = () => {
 							Price
 						</th>
 						<th className=' text-gray-500 font-medium text-left pr-8 pt-3'>
-							Chg %
+							24h %
 						</th>
 						<th className=' text-gray-500 font-medium text-left pt-3'>
 							Market Cap

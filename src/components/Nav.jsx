@@ -3,6 +3,7 @@ import Logo from '../images/Logo.png';
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
+import '../App.css';
 
 const Nav = () => {
 	// useState returns an array with exactly two values
@@ -61,39 +62,6 @@ const Nav = () => {
 					</ul>
 				</section>
 				</nav>
-			<style>
-				{`
-        .hide-mobile-nav{
-          position: absolute;
-          width: 100%;
-          height: 100vh; 
-          top: 4rem;
-          left: -100%;
-          background: #495057;
-          z-index: 10;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          transition: all .3s ease-in-out;
-          align-items: center;
-        }
-      
-      .show-mobile-nav {
-          position: absolute;
-          width: 100%;
-          height: 100vh; 
-          top: 4rem;
-          font-size: 20px;
-          left: 0;
-          z-index: 10;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-evenly;
-          transition: all .3s ease-in-out;
-          align-items: center;
-        }
-        `}
-			</style>
 		</>
 	);
 };

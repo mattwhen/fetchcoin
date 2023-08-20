@@ -56,7 +56,7 @@ const Table = () => {
 	// While fetching data, display message to user that the data is currently trying to render itself.
 	if (loading) return <h1>Fetching data...</h1>;
 
-	// <------------------------------------ REMOVE WHEN COMPLETE ------------------------------>
+	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
 	// console.log('COIN DATA', data.coins);
 
 	return (
@@ -126,12 +126,14 @@ const Table = () => {
 									</div>
 								</td>
 								<td>
-									<span className='font-semi'>
+									<div className=' w-24'>
+									<span className='font-semi pr-2'>
 										{/* Rounds price to two decimal places */}$
 										{/* {numberWithCommas(item.marketCap.toFixed(2))}
 										 */}
 										{renderMarketCap(item.marketCap)}
 									</span>
+									</div>
 								</td>
 							</tr>
 						</>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../images/Logo.png'
+import Logo from '../images/Logo.png';
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
@@ -10,13 +10,26 @@ const Nav = () => {
 	// 2. The set function that lets you update the state to a different value
 	const [navOpen, setNavOpen] = useState(false);
 
+	// Prevent/hide scrolling when the Navigation menu is opened.
+	if(navOpen) {
+		document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+	} else {
+		document.getElementsByTagName('body')[0].style.overflow = 'visible' 
+	}
+
 	return (
-		<div className=''>
-			<nav className=' flex items-center  px-4 h-16 shadow-lg'>
+		<>
+			<nav className=' flex items-center sticky bg-white top-0 z-50 px-4 h-16 shadow-lg'>
 				<div className='flex w-full p-4 items-center justify-between'>
 					<div className='left-nav-section'>
 						<a href='#home' className=' text-gray-500 text-2xl'>
-            <img src={Logo} alt='company-logo' className=' rounded-lg' height={50} width={50}></img>
+							<img
+								src={Logo}
+								alt='company-logo'
+								className=' rounded-lg'
+								height={50}
+								width={50}
+							></img>
 						</a>
 					</div>
 					<div className='right-nav-section'>
@@ -24,16 +37,16 @@ const Nav = () => {
 							href='#home'
 							id='hamburger-menu'
 							className='text-4xl flex align-middle text-gray-500 lg:hidden'
-							onClick={() => navOpen ? setNavOpen(false) : setNavOpen(true)}
+							onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
 						>
-              {navOpen ? <RxCross1/> : <GiHamburgerMenu/>}
+							{navOpen ? <RxCross1 /> : <GiHamburgerMenu />}
 						</a>
 					</div>
 				</div>
 				<section className='mobile-menu lg:hidden'>
 					<ul
 						className={
-							navOpen ? 'show-mobile-nav bg-slate-300' : 'hide-mobile-nav'
+							navOpen ? 'show-mobile-nav bg-white' : 'hide-mobile-nav'
 						}
 					>
 						<li className=' border-gray-400'>
@@ -47,7 +60,7 @@ const Nav = () => {
 						</li>
 					</ul>
 				</section>
-			</nav>
+				</nav>
 			<style>
 				{`
         .hide-mobile-nav{
@@ -61,7 +74,7 @@ const Nav = () => {
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
-          transition: all .4s ease-in-out;
+          transition: all .3s ease-in-out;
           align-items: center;
         }
       
@@ -76,12 +89,12 @@ const Nav = () => {
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
-          transition: all .4s ease-in-out;
+          transition: all .3s ease-in-out;
           align-items: center;
         }
         `}
 			</style>
-		</div>
+		</>
 	);
 };
 

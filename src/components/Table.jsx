@@ -85,7 +85,7 @@ const Table = () => {
 				<tbody>
 					{/* Render Coinstats API data */}
 					{data.coins.map((item) => (
-						<>
+						<React.Fragment key={item.id}>
 							<tr>
 								<td className='RANK'>
 									<div className='p-4 pl-5 pr-8'>{item.rank}</div>
@@ -109,7 +109,7 @@ const Table = () => {
 								</td>
 								<td className='PRICE'>
 									<div className='w-40'>
-										<span className='text-right font-semi'>
+										<span className='text-right font-semi font-bold'>
 											{/* Rounds price to two decimal places */}$
 											{numberWithCommas(item.price.toFixed(2))}
 										</span>
@@ -127,7 +127,7 @@ const Table = () => {
 								</td>
 								<td>
 									<div className=' w-24'>
-									<span className='font-semi pr-2'>
+									<span className='font-semi pr-2 font-bold'>
 										{/* Rounds price to two decimal places */}$
 										{/* {numberWithCommas(item.marketCap.toFixed(2))}
 										 */}
@@ -136,7 +136,7 @@ const Table = () => {
 									</div>
 								</td>
 							</tr>
-						</>
+						</React.Fragment>
 					))}
 				</tbody>
 			</table>

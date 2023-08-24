@@ -5,8 +5,6 @@ import Table from './components/Table';
 import Footer from './components/Footer';
 import './App.css';
 
-
-
 const App = () => {
   return (
     <>

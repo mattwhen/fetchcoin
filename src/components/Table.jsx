@@ -5,13 +5,14 @@ export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
+	const numOfCoinsPerPage = 50; 
 
 	useEffect(() => {
 		// Pass two arguments into our useEffect() hook: a Function and Array.
 		// callback function is called after the component renders.
 		// The second argument is called our dependencies array. This array should include all of the values that our side effect relies upon.
 
-		const url = `https://api.coinstats.app/public/v1/coins?skip=0&limit=300`;
+		const url = `https://api.coinstats.app/public/v1/coins?skip=0&limit=1000`;
 
 		// Render data initially.
 		fetch(url)
@@ -86,7 +87,7 @@ export default function Table() {
 					</thead>
 					<tbody>
 						{/* Render Coinstats API data */}
-						{data.coins.slice(page - 1, 50).map((item) => (
+						{data.coins.slice(page * numOfCoinsPerPage - numOfCoinsPerPage, page * numOfCoinsPerPage).map((item) => (
 							<React.Fragment key={item.id}>
 								<tr>
 									<td className='RANK'>
@@ -146,13 +147,14 @@ export default function Table() {
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
 					<div className='pagination m-5'>
 						<ul className='flex justify-evenly'>
-							<li>⬅️</li>
-							{[...Array(data.coins.length / 50)].map((_, index) => {
-								return <li key={index.id}>{index + 1}</li>;
+							<li onClick={() => setPage(page - 1)}>⬅️</li>
+							{[...Array(data.coins.length / numOfCoinsPerPage)].map((_, index) => {
+								return (
+										<li key={index.id} onClick={() => setPage(index + 1)}>{index + 1}</li>
+								)
 							})}
 							<li>{data.coins.length}</li>						
-							<li>➡️</li>
-
+							<li onClick={() => setPage(page + 1)}>➡️</li>
 						</ul>
 					</div>
 		</>

@@ -94,7 +94,7 @@ export default function Table() {
 										<div className='p-4 pl-5 pr-8'>{item.rank}</div>
 									</td>
 									<td>
-										<div className='NAME flex items-center pl-2 mr-10 w-40'>
+										<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
 											<div className='text-left'>
 												<img
 													src={item.icon}
@@ -131,9 +131,6 @@ export default function Table() {
 									<td>
 										<div className=' w-24'>
 											<span className='font-semi pr-2 font-bold'>
-												{/* Rounds price to two decimal places */}$
-												{/* {numberWithCommas(item.marketCap.toFixed(2))}
-												 */}
 												{renderMarketCap(item.marketCap)}
 											</span>
 										</div>
@@ -145,6 +142,8 @@ export default function Table() {
 				</table>
 			</div>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
+
+			{/*  <------------------------------------ PAGINATION SECTION ------------------------------> */}
 					<div className='pagination m-5'>
 						<ul className='flex justify-evenly'>
 							<li onClick={() => setPage(page - 1)}>⬅️</li>

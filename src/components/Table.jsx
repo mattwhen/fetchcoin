@@ -5,7 +5,7 @@ export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
-	const numOfCoinsPerPage = 50; 
+	const numOfCoinsPerPage = 50;
 
 	useEffect(() => {
 		// Pass two arguments into our useEffect() hook: a Function and Array.
@@ -16,7 +16,7 @@ export default function Table() {
 
 		// Render data initially.
 		fetch(url)
-			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.  
+			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
 			.then((json) => {
 				setData(json);
 				setLoading(false);
@@ -87,75 +87,91 @@ export default function Table() {
 					</thead>
 					<tbody>
 						{/* Render Coinstats API data */}
-						{data.coins.slice(page * numOfCoinsPerPage - numOfCoinsPerPage, page * numOfCoinsPerPage).map((item) => (
-							<React.Fragment key={item.id}>
-								<tr>
-									<td className='RANK'>
-										<div className='p-4 pl-5 pr-8'>{item.rank}</div>
-									</td>
-									<td>
-										<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
-											<div className='text-left'>
-												<img
-													src={item.icon}
-													className='w-8 h-8 mr-4'
-													alt='crypto-icon'
-												></img>
+						{data.coins
+							.slice(
+								page * numOfCoinsPerPage - numOfCoinsPerPage,
+								page * numOfCoinsPerPage
+							)
+							.map((item) => (
+								<React.Fragment key={item.id}>
+									<tr>
+										<td className='RANK'>
+											<div className='p-4 pl-5 pr-8'>{item.rank}</div>
+										</td>
+										<td>
+											<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
+												<div className='text-left'>
+													<img
+														src={item.icon}
+														className='w-8 h-8 mr-4'
+														alt='crypto-icon'
+													></img>
+												</div>
+												<div className='flex flex-col'>
+													<span className='text-sm font-bold leading-4 text-left'>
+														{item.name}
+													</span>
+													<span className='text-sm font-semi'>
+														{item.symbol}
+													</span>
+												</div>
 											</div>
-											<div className='flex flex-col'>
-												<span className='text-sm font-bold leading-4 text-left'>
-													{item.name}
+										</td>
+										<td className='PRICE'>
+											<div className='w-40'>
+												<span className='text-right font-semi font-bold'>
+													{/* Rounds price to two decimal places */}$
+													{numberWithCommas(item.price.toFixed(2))}
 												</span>
-												<span className='text-sm font-semi'>{item.symbol}</span>
 											</div>
-										</div>
-									</td>
-									<td className='PRICE'>
-										<div className='w-40'>
-											<span className='text-right font-semi font-bold'>
-												{/* Rounds price to two decimal places */}$
-												{numberWithCommas(item.price.toFixed(2))}
-											</span>
-										</div>
-									</td>
-									<td>
-										<div className='flex justify-start w-36'>
-											<span
-												// Sets the class depending on whether the price is POSITIVE or NEGATIVE.
-												className={renderClassName(item.priceChange1d)}
-											>
-												{item.priceChange1d}%
-											</span>
-										</div>
-									</td>
-									<td>
-										<div className=' w-24'>
-											<span className='font-semi pr-2 font-bold'>
-												{renderMarketCap(item.marketCap)}
-											</span>
-										</div>
-									</td>
-								</tr>
-							</React.Fragment>
-						))}
+										</td>
+										<td>
+											<div className='flex justify-start w-36'>
+												<span
+													// Sets the class depending on whether the price is POSITIVE or NEGATIVE.
+													className={renderClassName(item.priceChange1d)}
+												>
+													{item.priceChange1d}%
+												</span>
+											</div>
+										</td>
+										<td>
+											<div className=' w-24'>
+												<span className='font-semi pr-2 font-bold'>
+													${renderMarketCap(item.marketCap)}
+												</span>
+											</div>
+										</td>
+									</tr>
+								</React.Fragment>
+							))}
 					</tbody>
 				</table>
 			</div>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
 
 			{/*  <------------------------------------ PAGINATION SECTION ------------------------------> */}
-					<div className='pagination m-5'>
-						<ul className='flex justify-evenly'>
-							<li onClick={() => setPage(page - 1)}>⬅️</li>
-							{[...Array(data.coins.length / numOfCoinsPerPage)].map((_, index) => {
-								return (
-										<li key={index.id} onClick={() => setPage(index + 1)}>{index + 1}</li>
-								)
-							})}
-							<li>{data.coins.length}</li>						
-							<li onClick={() => setPage(page + 1)}>➡️</li>
-						</ul>
-					</div>
+			<div className='pagination m-5'>
+				<ul className='flex justify-evenly'>
+					{/* Renders the previous page of Coin data */}
+					<li onClick={() => page < 1 || page > data.coins.length ? false : setPage(page - 1)}>⬅️</li>
+					{/* Create a new array with our Coin data, taking the total amount of coins in our API call
+							and divide it by the number of coins rendered onto the page.*/}
+					{[...Array(data.coins.length / numOfCoinsPerPage)].slice(0, 5).map((_, index) => {
+						// Render the number of pages in our Pagination section, based on the length of our newly created Array.
+						return (
+							<li key={index.id} onClick={() => setPage(index + 1)}>
+								{index + 1}
+							</li>
+						);
+					})}
+					<li>...{() => setPage(page + 1)}</li>
+					{/* Displays the last page of our Pagination */}
+					<li onClick={() => setPage(data.coins.length / 50)}>{data.coins.length}</li>
+					{/* Renders the next page of Coin data */}
+					<li onClick={() => page < 1 || page > data.coins.length ? false : setPage(page + 1)}>➡️</li>
+				</ul>
+			</div>
 		</>
 	);
 }

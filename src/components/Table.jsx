@@ -30,7 +30,6 @@ export default function Table() {
 				.then((json) => {
 					setData(json);
 				})
-				// .then(console.log('fetched data', new Date().getSeconds()))
 				.catch((error) => console.error(error));
 		}, 10000);
 
@@ -62,9 +61,9 @@ export default function Table() {
 	console.log('COIN DATA', data.coins.length);
 
 	return (
-		<>
+		<React.Fragment>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
-			<div className='overflow-x-auto border-2 border-slate-300 rounded-md mx-2'>
+			<div className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2'>
 				<table className='table-auto'>
 					<thead>
 						<tr>
@@ -172,6 +171,6 @@ export default function Table() {
 					<li onClick={() => page < 1 || page > data.coins.length ? false : setPage(page + 1)}>➡️</li>
 				</ul>
 			</div>
-		</>
+		</React.Fragment>
 	);
 }

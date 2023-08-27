@@ -20,8 +20,8 @@ const Nav = () => {
 
 	return (
 		<>
-			<nav className=' flex items-center sticky bg-white top-0 z-50 px-4 h-16 shadow-lg'>
-				<div className='flex w-full p-4 items-center justify-between'>
+			<nav className=' flex items-center sticky top-0 z-50 h-16 shadow-sm'>
+				<div className='flex w-full p-4 items-center bg-sky-600 justify-between'>
 					<div className='left-nav-section'>
 						<a href='#home' className=' text-gray-500 text-2xl'>
 							<img
@@ -40,7 +40,7 @@ const Nav = () => {
 							className='text-4xl flex align-middle text-gray-500 lg:hidden'
 							onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
 						>
-							{navOpen ? <RxCross1 /> : <GiHamburgerMenu />}
+							{navOpen ? <RxCross1 className='z-50 transition-all' /> : <GiHamburgerMenu className=' text-white'/>}
 						</a>
 					</div>
 				</div>

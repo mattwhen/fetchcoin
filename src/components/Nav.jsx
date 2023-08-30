@@ -20,8 +20,8 @@ const Nav = () => {
 
 	return (
 		<>
-			<nav className=' flex items-center sticky top-0 z-50 h-16 shadow-sm'>
-				<div className='flex w-full p-4 items-center bg-sky-600 justify-between'>
+			<nav className=' flex items-center sticky top-0 z-50 h-16  bg-sky-600 p-5 shadow-sm'>
+				<div className='flex w-full items-center  justify-between'>
 					<div className='left-nav-section'>
 						<a href='#home' className=' text-gray-500 text-2xl'>
 							<img
@@ -51,13 +51,16 @@ const Nav = () => {
 						}
 					>
 						<li className=' border-gray-400'>
-							<a href='/about'>ABOUT</a>
+							<a href='#about' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>ABOUT</a>
 						</li>
 						<li className=' border-gray-400 '>
-							<a href='/portfolio'>CRYPTOCURRENCIES</a>
+							<a href='#crypto' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>CRYPTOCURRENCIES</a>
 						</li>
 						<li className=' border-gray-400 '>
-							<a href='/contact'>CONTACT</a>
+							<a href='#mission' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>MISSION</a>
+						</li>
+						<li className=' border-gray-400 '>
+							<a href='#contact' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>CONTACT</a>
 						</li>
 					</ul>
 				</section>

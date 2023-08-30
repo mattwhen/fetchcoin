@@ -15,7 +15,11 @@ export default function Table() {
 		const url = `https://api.coinstats.app/public/v1/coins?skip=0&limit=1000`;
 
 		// Render data initially.
-		fetch(url)
+		fetch(url, {
+			headers: {
+				'Cache-Control': 'max-age=3600', // set caching for 1 hour.
+			}
+		})
 			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
 			.then((json) => {
 				setData(json);
@@ -63,7 +67,7 @@ export default function Table() {
 	return (
 		<React.Fragment>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
-			<div className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2'>
+			<div id='crypto' className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2'>
 				<table className='table-auto'>
 					<thead>
 						<tr>

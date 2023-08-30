@@ -4,7 +4,7 @@ import { AiFillGithub, AiFillLinkedin } from 'react-icons/ai';
 const Footer = () => {
 	return (
 		<footer className=' flex flex-col justify-center items-center bg-stone-300 bottom-0 mt-28 h-32'>
-			<div className='flex space-x-5 mb-4'>
+			<div id='contact' className='flex space-x-5 mb-4'>
 				<a
 					href='https://github.com/mattwhen/fetchcoin'
 					target='_blank'

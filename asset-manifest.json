@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/fetchcoin/static/css/main.925d4f9c.css",
-    "main.js": "/fetchcoin/static/js/main.23ca1188.js",
+    "main.css": "/fetchcoin/static/css/main.06f30736.css",
+    "main.js": "/fetchcoin/static/js/main.5bf5236a.js",
     "index.html": "/fetchcoin/index.html",
-    "main.925d4f9c.css.map": "/fetchcoin/static/css/main.925d4f9c.css.map",
-    "main.23ca1188.js.map": "/fetchcoin/static/js/main.23ca1188.js.map"
+    "main.06f30736.css.map": "/fetchcoin/static/css/main.06f30736.css.map",
+    "main.5bf5236a.js.map": "/fetchcoin/static/js/main.5bf5236a.js.map"
   },
   "entrypoints": [
-    "static/css/main.925d4f9c.css",
-    "static/js/main.23ca1188.js"
+    "static/css/main.06f30736.css",
+    "static/js/main.5bf5236a.js"
   ]
 }

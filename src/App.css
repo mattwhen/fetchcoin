@@ -8,66 +8,70 @@
 @tailwind utilities;
 
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
-    @apply font-sans;
+	scroll-behavior: smooth;
+	@apply font-sans;
 }
 
 .green-change {
-    background-color: lightgreen;
-    color: #007200;
-    padding: 6px;
-    border-radius: 5px;
-    font-weight: 600;
+	background-color: lightgreen;
+	color: #007200;
+	padding: 6px;
+	border-radius: 5px;
+	font-weight: 600;
 }
 
 .red-change {
-    background-color: rgba(255, 53, 53, 0.1);
-    color: #a4161a;
-    padding: 6px;
-    border-radius: 5px;
-    font-weight: 600;
+	background-color: rgba(255, 53, 53, 0.1);
+	color: #a4161a;
+	padding: 6px;
+	border-radius: 5px;
+	font-weight: 600;
 }
 
 .no-change {
-    background-color: rgba(67, 65, 65, 0.1);
-    color: grey;
-    padding: 6px;
-    border-radius: 5px;
-    font-weight: 600;
+	background-color: rgba(67, 65, 65, 0.1);
+	color: grey;
+	padding: 6px;
+	border-radius: 5px;
+	font-weight: 600;
 }
 
 .hide-mobile-nav {
-    position: absolute;
-    width: 100%;
-    height: 100vh; 
-    overflow-y: visible;
-    top: 100vh;
-    left: 0;
-    background: #495057;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    transition: all .4s ease-in-out;
-    align-items: center;
-  }
+	position: absolute;
+	width: 100%;
+	height: 100vh;
+	overflow-y: visible;
+	top: 100vh;
+	left: 0;
+	background: #495057;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	transition: all 0.4s ease-in-out;
+	align-items: center;
+}
 
-  .show-mobile-nav {
-    position: absolute;
-    overflow-y: hidden;
-    width: 100%;
-    height: 100vh; 
-    top: 0;
-    left: 0;
-    font-size: 20px;
-    z-index: 10;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    transition: all .4s ease-in-out;
-    align-items: center;
-  }
+.show-mobile-nav {
+	position: absolute;
+	overflow-y: hidden;
+	width: 100%;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	font-size: 20px;
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	transition: all 0.4s ease-in-out;
+	align-items: center;
+}
+
+.scroll-btn:hover {
+    background-color: gray; 
+}

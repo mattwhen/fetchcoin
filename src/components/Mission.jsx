@@ -3,6 +3,11 @@ import { TfiWallet, TfiCreditCard } from 'react-icons/tfi';
 import { AiOutlineStock } from 'react-icons/ai';
 
 const Mission = () => {
+	const scrollToTop = () => {
+		document.body.scrollTop = 0;
+		document.documentElement.scrollTop = 0;
+	};
+
 	return (
 		<>
 			<div id='mission' className='CONTAINER flex flex-col justify-center gap-10 text-center'>
@@ -51,6 +56,9 @@ const Mission = () => {
 							culpa nemo quidem?
 						</p>
 					</div>
+				</div>
+				<div className='flex justify-center'>
+					<button className='scroll-btn bg-sky-500 p-3 rounded-md text-white text-4xl' onClick={scrollToTop}>🔝</button>
 				</div>
 			</div>
 		</>

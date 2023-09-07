@@ -12,10 +12,10 @@ const Nav = () => {
 	const [navOpen, setNavOpen] = useState(false);
 
 	// Prevent/hide scrolling when the Navigation menu is opened.
-	if(navOpen) {
+	if (navOpen) {
 		document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 	} else {
-		document.getElementsByTagName('body')[0].style.overflow = 'visible' 
+		document.getElementsByTagName('body')[0].style.overflow = 'visible';
 	}
 
 	return (
@@ -40,31 +40,57 @@ const Nav = () => {
 							className='text-4xl flex align-middle text-gray-500 lg:hidden'
 							onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
 						>
-							{navOpen ? <RxCross1 className='z-50 transition-all' /> : <GiHamburgerMenu className=' text-white'/>}
+							{navOpen ? (
+								<RxCross1 className='z-50 transition-all' />
+							) : (
+								<GiHamburgerMenu className=' text-white' />
+							)}
 						</a>
 					</div>
 				</div>
 				<section className='mobile-menu lg:hidden'>
 					<ul
-						className={
-							navOpen ? 'show-mobile-nav bg-white' : 'hide-mobile-nav'
-						}
+						className={navOpen ? 'show-mobile-nav bg-white' : 'hide-mobile-nav'}
 					>
 						<li className=' border-gray-400'>
-							<a href='#about' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>ABOUT</a>
+							<a
+								href='about'
+								onClick={
+									() => {
+									window.scrollTo(0,0);
+									return navOpen ? setNavOpen(false) : setNavOpen(true);
+								}}
+							>
+								ABOUT
+							</a>
 						</li>
 						<li className=' border-gray-400 '>
-							<a href='#crypto' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>CRYPTOCURRENCIES</a>
+							<a
+								href='#crypto'
+								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
+							>
+								CRYPTOCURRENCIES
+							</a>
 						</li>
 						<li className=' border-gray-400 '>
-							<a href='#mission' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>MISSION</a>
+							<a
+								href='#mission'
+								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
+							>
+								MISSION
+							</a>
 						</li>
 						<li className=' border-gray-400 '>
-							<a href='#contact' onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}>CONTACT</a>
+							<a
+								href='#contact'
+								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
+							>
+								CONTACT
+							</a>
 						</li>
 					</ul>
 				</section>
-				</nav>
+			</nav>
 		</>
 	);
 };

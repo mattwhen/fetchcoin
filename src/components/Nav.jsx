@@ -28,16 +28,44 @@ const Nav = () => {
 								src={Logo}
 								alt='company-logo'
 								className=' rounded-lg'
+								onClick={() => {
+									document.body.scrollTop = 0;
+									document.documentElement.scrollTop = 0;
+								}}
 								height={50}
 								width={50}
 							></img>
 						</a>
 					</div>
 					<div className='right-nav-section'>
+						<div className='sm:hidden md:block lg:block'>
+							<ul className='flex justify-evenly gap-10 text-white'>
+								<li className=''>
+									<a
+										href='#about'
+										onClick={() => {
+											document.body.scrollTop = 0;
+											document.documentElement.scrollTop = 0;
+										}}
+									>
+										ABOUT
+									</a>
+								</li>
+								<li>
+									<a href='#crypto'>CRYPTOCURRENCIES</a>
+								</li>
+								<li>
+									<a href='#mission'>MISSION</a> 
+								</li>
+								<li>
+									<a href='#contact'>CONTACT</a> 
+								</li>
+							</ul>
+						</div>
 						<a
 							href='#home'
 							id='hamburger-menu'
-							className='text-4xl flex align-middle text-gray-500 lg:hidden'
+							className='text-4xl flex align-middle text-gray-500 md:hidden lg:hidden'
 							onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
 						>
 							{navOpen ? (
@@ -48,16 +76,16 @@ const Nav = () => {
 						</a>
 					</div>
 				</div>
-				<section className='mobile-menu lg:hidden'>
+				<section className='mobile-menu md:hidden lg:hidden'>
 					<ul
 						className={navOpen ? 'show-mobile-nav bg-white' : 'hide-mobile-nav'}
 					>
 						<li className=' border-gray-400'>
 							<a
-								href='about'
-								onClick={
-									() => {
-									window.scrollTo(0,0);
+								href='#about'
+								onClick={() => {
+									document.body.scrollTop = 0;
+									document.documentElement.scrollTop = 0;
 									return navOpen ? setNavOpen(false) : setNavOpen(true);
 								}}
 							>

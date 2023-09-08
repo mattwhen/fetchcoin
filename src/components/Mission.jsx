@@ -3,19 +3,16 @@ import { TfiWallet, TfiCreditCard } from 'react-icons/tfi';
 import { AiOutlineStock } from 'react-icons/ai';
 
 const Mission = () => {
-	const scrollToTop = () => {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
-	};
+
 
 	return (
 		<>
 			<div id='mission' className='CONTAINER flex flex-col justify-center gap-10 text-center'>
 				<h2 className=' text-4xl mt-20'>Our Mission</h2>
 				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
-					<h3 className='text-3xl pb-3'>Title 1</h3>
+					<h3 className='text-3xl pb-5'>Title 1</h3>
 					<div className='flex flex-col justify-center items-center'>
-						<TfiWallet className='text-5xl' />
+						<TfiWallet className='text-5xl mb-5' />
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
 							dolore minus beatae alias unde, iusto vero, dolores nemo ab iste
@@ -29,8 +26,8 @@ const Mission = () => {
 				</div>
 				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
 					<div className='flex flex-col justify-center items-center'>
-						<h3 className='text-3xl pb-3'>Title 2</h3>
-						<AiOutlineStock className='text-5xl' />
+						<h3 className='text-3xl pb-5'>Title 2</h3>
+						<AiOutlineStock className='text-5xl mb-5' />
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
 							dolore minus beatae alias unde, iusto vero, dolores nemo ab iste
@@ -44,8 +41,8 @@ const Mission = () => {
 				</div>
 				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
 					<div className='flex flex-col justify-center items-center'>
-						<h3 className='text-3xl pb-3'>Title 3</h3>
-						<TfiCreditCard className='text-5xl'/>
+						<h3 className='text-3xl pb-5'>Title 3</h3>
+						<TfiCreditCard className='text-5xl mb-5'/>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
 							dolore minus beatae alias unde, iusto vero, dolores nemo ab iste
@@ -57,9 +54,7 @@ const Mission = () => {
 						</p>
 					</div>
 				</div>
-				<div className='flex justify-center'>
-					<button className='scroll-btn bg-sky-500 p-3 rounded-md text-white text-4xl' onClick={scrollToTop}>🔝</button>
-				</div>
+			
 			</div>
 		</>
 	);

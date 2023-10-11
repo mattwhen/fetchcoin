@@ -1,11 +1,11 @@
 import React from 'react';
-import Nav from './components/Nav';
-import About from './components/About';
-import Table from './components/Table';
-import Footer from './components/Footer';
+import Nav from './components/Nav/Nav';
+import About from './components/About/About';
+import Table from './components/Table/Table';
+import Footer from './components/Footer/Footer';
 import './App.css';
-import Mission from './components/Mission';
-import Contact from './components/Contact';
+import Mission from './components/Mission/Mission';
+import Contact from './components/Contact/Contact';
 
 const App = () => {
   return (

@@ -1,26 +1,55 @@
 import React from 'react';
-import Logo from '../images/Logo.png';
-import { useState } from 'react';
+import Logo from '../../images/Logo.png';
+import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
-import '../App.css';
+import '../../App.css';
 
 const Nav = () => {
 	// useState returns an array with exactly two values
 	// 1. The current state.
 	// 2. The set function that lets you update the state to a different value
 	const [navOpen, setNavOpen] = useState(false);
+	const [showNav, setshowNav] = useState(true);
+	const [previousScroll, setPreviousScroll] = useState(0);
 
 	// Prevent/hide scrolling when the Navigation menu is opened.
-	if (navOpen) {
-		document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-	} else {
-		document.getElementsByTagName('body')[0].style.overflow = 'visible';
-	}
+	const navOpenHandler = () => {
+		if (navOpen) {
+			document.getElementsByTagName('body')[0].style.overflow = 'visible';
+			setNavOpen(false);
+		} else {
+			document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+			setNavOpen(true);
+		}
+	};
+
+	useEffect(() => {
+		let previousScrollPosition = 0;
+		let currentScrollPosition = 0;
+
+		window.addEventListener('scroll', function (e) {
+			// Get the new Value
+			currentScrollPosition = window.pageYOffset;
+
+			//Subtract the two and conclude
+			if (previousScrollPosition - currentScrollPosition < 0) {
+				console.log(true);
+			} else if (previousScrollPosition - currentScrollPosition > 0) {
+				console.log(false);
+			}
+
+			// Update the previous value
+			previousScrollPosition = currentScrollPosition;
+		});
+	}, []);
 
 	return (
 		<>
-			<nav className=' flex items-center sticky top-0 z-50 h-16  bg-sky-600 p-5 shadow-sm'>
+			<nav
+				className=' flex items-center sticky top-0 z-50 h-16  bg-sky-600 p-5 shadow-sm'
+				id='navbar-js'
+			>
 				<div className='flex w-full items-center  justify-between'>
 					<div className='left-nav-section'>
 						<a href='#home' className=' text-gray-500 text-2xl'>
@@ -55,10 +84,10 @@ const Nav = () => {
 									<a href='#crypto'>CRYPTOCURRENCIES</a>
 								</li>
 								<li>
-									<a href='#mission'>MISSION</a> 
+									<a href='#mission'>MISSION</a>
 								</li>
 								<li>
-									<a href='#contact'>CONTACT</a> 
+									<a href='#contact'>CONTACT</a>
 								</li>
 							</ul>
 						</div>
@@ -66,7 +95,7 @@ const Nav = () => {
 							href='#home'
 							id='hamburger-menu'
 							className='text-4xl flex align-middle text-gray-500 md:hidden lg:hidden'
-							onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
+							onClick={navOpenHandler}
 						>
 							{navOpen ? (
 								<RxCross1 className='z-50 transition-all' />

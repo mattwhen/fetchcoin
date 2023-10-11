@@ -59,7 +59,7 @@ html {
 .show-mobile-nav {
 	position: absolute;
 	overflow-y: hidden;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	top: 0;
 	left: 0;
@@ -74,4 +74,8 @@ html {
 
 .scroll-btn:hover {
     background-color: gray; 
+}
+
+#navbar-js {
+	transition: top 0.3s;
 }

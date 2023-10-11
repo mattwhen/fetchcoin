@@ -1,5 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Pagination from '../Pagination/Pagination';
+import './Table.css';
 
 export default function Table() {
 	const [data, setData] = useState([]);
@@ -62,7 +64,7 @@ export default function Table() {
 	if (loading) return <h1>Fetching data...</h1>;
 
 	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
-	console.log('COIN DATA', data.coins.length);
+	console.log('COIN DATA', data.coins);
 
 	return (
 		<React.Fragment>
@@ -95,9 +97,8 @@ export default function Table() {
 								page * numOfCoinsPerPage - numOfCoinsPerPage,
 								page * numOfCoinsPerPage
 							)
-							.map((item) => (
-								<React.Fragment key={item.id}>
-									<tr>
+							.map((item, i) => (
+									<tr key={i}>
 										<td className='RANK'>
 											<div className='p-4 pl-5 pr-8'>{item.rank}</div>
 										</td>
@@ -146,9 +147,9 @@ export default function Table() {
 											</div>
 										</td>
 									</tr>
-								</React.Fragment>
 							))}
 					</tbody>
+ 
 				</table>
 			</div>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
@@ -157,24 +158,28 @@ export default function Table() {
 			<div className='pagination m-5'>
 				<ul className='flex justify-evenly'>
 					{/* Renders the previous page of Coin data */}
-					<li onClick={() => page < 1 || page > data.coins.length ? false : setPage(page - 1)}>⬅️</li>
+					<li className='pagination-hover' onClick={() => page <= 1 ? null : setPage(page - 1)}>⬅️</li>
 					{/* Create a new array with our Coin data, taking the total amount of coins in our API call
 							and divide it by the number of coins rendered onto the page.*/}
+
 					{[...Array(data.coins.length / numOfCoinsPerPage)].slice(0, 5).map((_, index) => {
+						
 						// Render the number of pages in our Pagination section, based on the length of our newly created Array.
 						return (
-							<li key={index.id} onClick={() => setPage(index + 1)}>
+							<li className='pagination-hover-number' key={index.id} onClick={() => setPage(index + 1)}>
 								{index + 1}
 							</li>
+
 						);
 					})}
-					<li>...{() => setPage(page + 1)}</li>
+					<li className='pagination-hover-number'>...{() => setPage(page + 1)}</li>
 					{/* Displays the last page of our Pagination */}
-					<li onClick={() => setPage(data.coins.length / 50)}>{data.coins.length}</li>
+					<li className='pagination-hover-number' onClick={() => setPage(data.coins.length / 50)}>{data.coins.length / 50}</li>
 					{/* Renders the next page of Coin data */}
-					<li onClick={() => page < 1 || page > data.coins.length ? false : setPage(page + 1)}>➡️</li>
+					<li className='pagination-hover' onClick={() => page >= data.coins.length / 50 ? null : setPage(page + 1)}>➡️</li>
 				</ul>
 			</div>
+	
 		</React.Fragment>
 	);
 }

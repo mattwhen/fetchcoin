@@ -1,0 +1,12 @@
+.pagination-hover:hover {
+    cursor: pointer;
+}
+
+.pagination-hover-number:hover {
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    background: lightgray;
+    border-radius: 50%;
+}

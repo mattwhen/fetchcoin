@@ -1,0 +1,10 @@
+
+#navbar-js-show {
+    position: sticky;
+    transition: all 0.8s;
+}
+
+#navbar-js-hidden {
+    top: -100px;
+    transition: all 0.8s;
+}

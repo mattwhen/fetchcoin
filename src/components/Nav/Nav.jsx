@@ -4,13 +4,14 @@ import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
 import '../../App.css';
+import './Nav.css';
 
 const Nav = () => {
 	// useState returns an array with exactly two values
 	// 1. The current state.
 	// 2. The set function that lets you update the state to a different value
 	const [navOpen, setNavOpen] = useState(false);
-	const [showNav, setshowNav] = useState(true);
+	const [showNav, setShowNav] = useState(true);
 	const [previousScroll, setPreviousScroll] = useState(0);
 
 	// Prevent/hide scrolling when the Navigation menu is opened.
@@ -24,31 +25,37 @@ const Nav = () => {
 		}
 	};
 
-	useEffect(() => {
-		let previousScrollPosition = 0;
-		let currentScrollPosition = 0;
+	const scrollHandler = () => {
 
 		window.addEventListener('scroll', function (e) {
 			// Get the new Value
-			currentScrollPosition = window.pageYOffset;
+			let currentScroll = window.pageYOffset;
 
-			//Subtract the two and conclude
-			if (previousScrollPosition - currentScrollPosition < 0) {
-				console.log(true);
-			} else if (previousScrollPosition - currentScrollPosition > 0) {
-				console.log(false);
+			// IF the current scroll is greater than previousScroll, show Navbar
+			if (currentScroll > previousScroll) {
+				setShowNav(true);
+			} else {
+				setShowNav(false);
 			}
 
-			// Update the previous value
-			previousScrollPosition = currentScrollPosition;
+			setPreviousScroll(currentScroll);
 		});
-	}, []);
+	};
 
+	// Hide Navbar when scrolling down, make it visible when scrolling up.
+	useEffect(() => {
+		window.addEventListener('scroll', scrollHandler);
+
+		return () => {
+		  window.removeEventListener('scroll', scrollHandler);
+		};
+
+	}, []);
 	return (
 		<>
 			<nav
 				className=' flex items-center sticky top-0 z-50 h-16  bg-sky-600 p-5 shadow-sm'
-				id='navbar-js'
+				id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
 			>
 				<div className='flex w-full items-center  justify-between'>
 					<div className='left-nav-section'>

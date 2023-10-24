@@ -2,11 +2,27 @@
     cursor: pointer;
 }
 
-.pagination-hover-number:hover {
-    cursor: pointer;
-    height: 30px;
-    width: 30px;
+.pagination-item {
+    padding: 0 12px;
+    height: 32px;
     text-align: center;
-    background: lightgray;
+    margin: auto 4px;
+    color: rgba(0, 0, 0, 0.87);
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    letter-spacing: 0.01071em;
+    border-radius: 16px;
+    line-height: 1.43;
+    font-weight: 500;
+    font-size: 21px;
+    min-width: 32px;
+}
+
+.pagination-item:hover {
+    cursor: pointer;
     border-radius: 50%;
+    cursor: pointer;
+    --tw-bg-opacity: 1;
+    background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }

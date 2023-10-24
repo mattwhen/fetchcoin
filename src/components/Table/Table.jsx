@@ -171,8 +171,8 @@ export default function Table() {
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
 
 			{/*  <------------------------------------ PAGINATION SECTION ------------------------------> */}
-			<div className='pagination m-5 lg:w-1/2 lg:m-auto lg:mt-5'>
-				<ul className='flex justify-evenly'>
+			<div className='flex justify-center pagination m-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
+				<ul className='flex'>
 					{/* Renders the previous page of Coin data */}
 					<li
 						className='cursor-pointer'
@@ -191,7 +191,7 @@ export default function Table() {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
 							return (
 								<li
-									className={pageSelect ? 'bg-sky-500' : 'pagination-hover-number'}
+									className={pageSelect ? 'pagination-item:hover' : 'pagination-item'}
 									key={index.id}
 									onClick={(e) => {
 										setPage(index + 1);
@@ -202,12 +202,12 @@ export default function Table() {
 								</li>
 							);
 						})}
-					<li className='pagination-hover-number' onClick={() => setPage(page + 5)}>
+					<li className='pagination-item pagination-item:hover' onClick={() => setPage(page + 5)}>
 						...
 					</li>
 					{/* Displays the last page of our Pagination */}
 					<li
-						className='pagination-hover-number'
+						className='pagination-item pagination-item:hover'
 						onClick={() => setPage(data.coins.length / 50)}
 					>
 						{data.coins.length / 50}

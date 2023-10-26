@@ -2,6 +2,8 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import './Table.css';
 
+const apiKey = process.env.REACT_APP_KEY;
+
 export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -43,16 +45,21 @@ export default function Table() {
 		// callback function is called after the component renders.
 		// The second argument is called our dependencies array. This array should include all of the values that our side effect relies upon.
 
-		const url = `https://api.coinstats.app/public/v1/coins?skip=0&limit=1000`;
+		const url = `https://openapiv1.coinstats.app/coins?limit=1000`;
+		const options = {
+			method: 'GET',
+			headers: {
+			  accept: 'application/json',
+			  'X-API-KEY': apiKey,
+			}
+		  };
+		  
 
 		// Render data initially.
-		fetch(url, {
-			headers: {
-				'Cache-Control': 'max-age=3600', // set caching for 1 hour.
-			},
-		})
+		fetch(url, options)
 			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
 			.then((json) => {
+				console.log(json);
 				setData(json);
 				setLoading(false);
 			})
@@ -60,7 +67,7 @@ export default function Table() {
 
 		// Update the data in the table every 10 seconds.
 		let intervalData = setInterval(() => {
-			fetch(url)
+			fetch(url, options)
 				.then((response) => response.json())
 				.then((json) => {
 					setData(json);
@@ -93,7 +100,7 @@ export default function Table() {
 	if (loading) return <h1>Fetching data...</h1>;
 
 	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
-	console.log('COIN DATA', data.coins);
+	console.log('COIN DATA', data.result.length);
 
 	return (
 		<React.Fragment>
@@ -109,7 +116,7 @@ export default function Table() {
 					</thead>
 					<tbody>
 						{/* Render Coinstats API data */}
-						{data.coins
+						{data.result
 							.slice(
 								page * numOfCoinsPerPage - numOfCoinsPerPage,
 								page * numOfCoinsPerPage
@@ -185,7 +192,7 @@ export default function Table() {
 
 					{/* TODO: When the user is on the 5th page, render page numbers from 5 - 10 and so on... */}
 
-					{[...Array(data.coins.length / numOfCoinsPerPage)]
+					{[...Array(data.result.length / numOfCoinsPerPage)]
 						.slice(0, 5)
 						.map((_, index) => {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
@@ -208,15 +215,15 @@ export default function Table() {
 					{/* Displays the last page of our Pagination */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => setPage(data.coins.length / 50)}
+						onClick={() => setPage(data.result.length / 50)}
 					>
-						{data.coins.length / 50}
+						{data.result.length / 50}
 					</li>
 					{/* Renders the next page of Coin data */}
 					<li
 						className='cursor-pointer'
 						onClick={() =>
-							page >= data.coins.length / 50 ? null : setPage(page + 1)
+							page >= data.result.length / 50 ? null : setPage(page + 1)
 						}
 					>
 						➡️

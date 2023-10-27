@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Loading from '../Loading/Loading';
 import './Table.css';
-
 
 const apiKey = process.env.REACT_APP_KEY;
 
@@ -49,16 +49,13 @@ export default function Table() {
 		const url = `https://openapiv1.coinstats.app/coins?limit=1000`;
 		const options = {
 			method: 'GET',
-			headers:
-			 {
-			  accept: 'application/json',
-			  'Accept-Encoding': 'gzip, compress, br',
-			  'Cache-Control': 'max-age=31536000', // Cache data for one year.
-			  'X-API-KEY': apiKey,
-
-			}
-		  };
-		  
+			headers: new Headers({
+				accept: 'application/json',
+				'Accept-Encoding': 'br',
+				'Cache-Control': 'max-age=31536000', // Cache data for one year.
+				'X-API-KEY': apiKey,
+			}),
+		};
 
 		// Render data initially.
 		fetch(url, options)
@@ -102,24 +99,23 @@ export default function Table() {
 	}
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
-	if (loading) return <h1>Fetching data...</h1>;
+	if (loading)
+		return (
+				<Loading mapHeaders={mapHeaders} />
+		);
 
 	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
 	console.log('COIN DATA', data.result.length);
 
 	return (
-		<React.Fragment>
+		<>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
-			<section
-				className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-1/2 lg:m-auto'
-			>
+			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-1/2 lg:m-auto'>
 				<table className='table-auto'>
 					<thead>
-						<tr>
-							{mapHeaders}
-						</tr>
+						<tr>{mapHeaders}</tr>
 					</thead>
-					<tbody>
+					<tbody className='w-40'>
 						{/* Render Coinstats API data */}
 						{data.result
 							.slice(
@@ -177,8 +173,6 @@ export default function Table() {
 							))}
 					</tbody>
 				</table>
-
-				
 			</section>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
 
@@ -203,18 +197,23 @@ export default function Table() {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
 							return (
 								<li
-									className={pageSelect ? 'pagination-item:hover' : 'pagination-item'}
+									className={
+										pageSelect ? 'pagination-item:hover' : 'pagination-item'
+									}
 									key={index.id}
 									onClick={(e) => {
 										setPage(index + 1);
-										console.log(e.target)
+										console.log(e.target);
 									}}
 								>
 									{index + 1}
 								</li>
 							);
 						})}
-					<li className='pagination-item pagination-item:hover' onClick={() => setPage(page + 5)}>
+					<li
+						className='pagination-item pagination-item:hover'
+						onClick={() => setPage(page + 5)}
+					>
 						...
 					</li>
 					{/* Displays the last page of our Pagination */}
@@ -235,6 +234,6 @@ export default function Table() {
 					</li>
 				</ul>
 			</div>
-		</React.Fragment>
+		</>
 	);
 }

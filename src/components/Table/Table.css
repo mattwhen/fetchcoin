@@ -26,3 +26,19 @@
     --tw-bg-opacity: 1;
     background-color: rgb(2 132 199 / var(--tw-bg-opacity));
 }
+
+#loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #444444;
+    width: 70px;
+    height: 70px;
+    animation: spin .5s linear infinite;
+} 
+
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}

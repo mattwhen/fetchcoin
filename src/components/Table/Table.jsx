@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import './Table.css';
 
+
 const apiKey = process.env.REACT_APP_KEY;
 
 export default function Table() {
@@ -48,9 +49,13 @@ export default function Table() {
 		const url = `https://openapiv1.coinstats.app/coins?limit=1000`;
 		const options = {
 			method: 'GET',
-			headers: {
+			headers:
+			 {
 			  accept: 'application/json',
+			  'Accept-Encoding': 'gzip, compress, br',
+			  'Cache-Control': 'max-age=31536000', // Cache data for one year.
 			  'X-API-KEY': apiKey,
+
 			}
 		  };
 		  

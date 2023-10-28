@@ -7,9 +7,9 @@ const Mission = () => {
 
 	return (
 		<>
-			<div id='mission' className='CONTAINER flex flex-col justify-center gap-10 text-center'>
-				<h2 className=' text-4xl mt-20'>Our Mission</h2>
-				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
+				<h2 className='text-center text-4xl mt-20 mb-10'>Our Mission</h2>
+			<div id='mission' className='CONTAINER p-4 flex flex-col justify-center gap-10 text-center lg:flex-row'>
+				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2 lg:w-96 lg:m-auto'>
 					<h3 className='text-3xl pb-5'>Title 1</h3>
 					<div className='flex flex-col justify-center items-center'>
 						<TfiWallet className='text-5xl mb-5' />
@@ -24,7 +24,7 @@ const Mission = () => {
 						</p>
 					</div>
 				</div>
-				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
+				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2 lg:w-96 lg:m-auto'>
 					<div className='flex flex-col justify-center items-center'>
 						<h3 className='text-3xl pb-5'>Title 2</h3>
 						<AiOutlineStock className='text-5xl mb-5' />
@@ -39,7 +39,7 @@ const Mission = () => {
 						</p>
 					</div>
 				</div>
-				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2'>
+				<div className='p-5 border-solid border-2 rounded-md border-sky-700 mx-2 lg:w-96 lg:m-auto'>
 					<div className='flex flex-col justify-center items-center'>
 						<h3 className='text-3xl pb-5'>Title 3</h3>
 						<TfiCreditCard className='text-5xl mb-5'/>

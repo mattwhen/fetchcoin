@@ -33,10 +33,18 @@ export default function Table() {
 			id: 4,
 			name: 'Market Cap',
 		},
+		{
+			id: 5,
+			name: 'Total Supply',
+		},
+		{
+			id: 6,
+			name: 'Volume',
+		},
 	];
 
 	const mapHeaders = tableHeaders.map((item) => (
-		<th key={item.id} className='text-gray-500 font-medium text-left pl-2 pt-3'>
+		<th key={item.id} className='text-gray-500 font-bold text-left pl-2 pt-3'>
 			{item.name}
 		</th>
 	));
@@ -94,8 +102,8 @@ export default function Table() {
 	}
 
 	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
-	function renderMarketCap(marketCap) {
-		return Intl.NumberFormat('en', { notation: 'compact' }).format(marketCap);
+	function renderNumberFormatting(num) {
+		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
 	}
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
@@ -125,7 +133,7 @@ export default function Table() {
 							.map((item, i) => (
 								<tr key={i}>
 									<td className='RANK'>
-										<div className='p-4 pl-5 pr-8'>{item.rank}</div>
+										<div className='p-4 pl-5 pr-8 w-20'>{item.rank}</div>
 									</td>
 									<td>
 										<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
@@ -145,15 +153,15 @@ export default function Table() {
 										</div>
 									</td>
 									<td className='PRICE'>
-										<div className='w-40'>
-											<span className='text-right font-semi font-bold'>
+										<div className='w-40 ml-2'>
+											<span className='text-right font-bold'>
 												{/* Rounds price to two decimal places */}$
 												{numberWithCommas(item.price.toFixed(2))}
 											</span>
 										</div>
 									</td>
 									<td>
-										<div className='flex justify-start w-36'>
+										<div className='flex justify-start w-32'>
 											<span
 												// Sets the class depending on whether the price is POSITIVE or NEGATIVE.
 												className={renderClassName(item.priceChange1d)}
@@ -163,9 +171,23 @@ export default function Table() {
 										</div>
 									</td>
 									<td>
-										<div className=' w-24'>
-											<span className='font-semi pr-2 font-bold'>
-												${renderMarketCap(item.marketCap)}
+										<div className=' w-36'>
+											<span className='font-bold ml-2'>
+												${renderNumberFormatting(item.marketCap)}
+											</span>
+										</div>
+									</td>
+									<td>
+										<div className='w-32 ml-2'>
+											<span className='font-bold'>
+												{renderNumberFormatting(item.totalSupply)}
+											</span>
+										</div>
+									</td>
+									<td>
+										<div className='w-20 ml-2'>
+											<span className='font-bold'>
+												{renderNumberFormatting(item.volume)}
 											</span>
 										</div>
 									</td>

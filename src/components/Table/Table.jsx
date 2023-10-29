@@ -9,7 +9,6 @@ export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
-	const [pageSelect, setPageSelect] = useState(false);
 	const numOfCoinsPerPage = 50;
 
 	const tableHeaders = [
@@ -23,7 +22,7 @@ export default function Table() {
 		},
 		{
 			id: 2,
-			name: 'Price',
+			name: 'Last',
 		},
 		{
 			id: 3,
@@ -44,10 +43,18 @@ export default function Table() {
 	];
 
 	const mapHeaders = tableHeaders.map((item) => (
-		<th key={item.id} className='text-gray-500 font-bold text-left pl-2 pt-3'>
+		<th
+			key={item.id}
+			className='text-black font-normal text-left pl-3 py-2'
+			style={{ backgroundColor: '#F8FAFD' }}
+		>
 			{item.name}
 		</th>
 	));
+
+	function handleClick(currentPage) {
+		setPage(currentPage);
+	}
 
 	useEffect(() => {
 		// Pass two arguments into our useEffect() hook: a Function and Array.
@@ -107,10 +114,7 @@ export default function Table() {
 	}
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
-	if (loading)
-		return (
-				<Loading mapHeaders={mapHeaders} />
-		);
+	if (loading) return <Loading mapHeaders={mapHeaders} />;
 
 	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
 	console.log('COIN DATA', data.result.length);
@@ -118,7 +122,7 @@ export default function Table() {
 	return (
 		<>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
-			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-1/2 lg:m-auto'>
+			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>
 					<thead>
 						<tr>{mapHeaders}</tr>
@@ -131,9 +135,9 @@ export default function Table() {
 								page * numOfCoinsPerPage
 							)
 							.map((item, i) => (
-								<tr key={i}>
+								<tr key={i} className='h-14'>
 									<td className='RANK'>
-										<div className='p-4 pl-5 pr-8 w-20'>{item.rank}</div>
+										<div className='ml-6 w-20'>{item.rank}</div>
 									</td>
 									<td>
 										<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
@@ -185,7 +189,7 @@ export default function Table() {
 										</div>
 									</td>
 									<td>
-										<div className='w-20 ml-2'>
+										<div className='w-40 ml-2'>
 											<span className='font-bold'>
 												{renderNumberFormatting(item.volume)}
 											</span>
@@ -200,10 +204,10 @@ export default function Table() {
 
 			{/*  <------------------------------------ PAGINATION SECTION ------------------------------> */}
 			<div className='flex justify-center pagination m-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
-				<ul className='flex'>
+				<ul className='flex items-center'>
 					{/* Renders the previous page of Coin data */}
 					<li
-						className='cursor-pointer'
+						className='cursor-pointer mr-8 flex align-middle'
 						onClick={() => (page <= 1 ? null : setPage(page - 1))}
 					>
 						⬅️
@@ -219,14 +223,9 @@ export default function Table() {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
 							return (
 								<li
-									className={
-										pageSelect ? 'pagination-item:hover' : 'pagination-item'
-									}
+									className={page === (index + 1) ? 'selected-page' : 'pagination-item pagination-item:hover'}
 									key={index.id}
-									onClick={(e) => {
-										setPage(index + 1);
-										console.log(e.target);
-									}}
+									onClick={() => handleClick(index + 1)}
 								>
 									{index + 1}
 								</li>
@@ -247,7 +246,7 @@ export default function Table() {
 					</li>
 					{/* Renders the next page of Coin data */}
 					<li
-						className='cursor-pointer'
+						className='cursor-pointer ml-8'
 						onClick={() =>
 							page >= data.result.length / 50 ? null : setPage(page + 1)
 						}

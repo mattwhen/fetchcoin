@@ -54,7 +54,7 @@ const Nav = () => {
 	return (
 		<>
 			<nav
-				className=' flex items-center sticky top-0 z-50 h-16  bg-sky-600 p-5 shadow-sm'
+				className=' flex items-center bg-white sticky top-0 z-50 h-16 p-5 shadow-md'
 				id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
 			>
 				<div className='flex w-full items-center  justify-between'>
@@ -75,7 +75,7 @@ const Nav = () => {
 					</div>
 					<div className='right-nav-section'>
 						<div className='sm:hidden md:block lg:block'>
-							<ul className='flex justify-evenly gap-10 text-white'>
+							<ul className='flex justify-evenly gap-10 text-black'>
 								<li className=''>
 									<a
 										href='#about'

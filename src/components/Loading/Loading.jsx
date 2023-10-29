@@ -3,7 +3,7 @@ import React from 'react';
 const Loading = ({ mapHeaders }) => {
 	return (
 		<>
-			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-1/2 lg:h-96 lg:m-auto'>
+			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-96 lg:h-96 lg:m-auto'>
 				<table className='table-auto'>
 					<thead>
 						<tr>{mapHeaders}</tr>

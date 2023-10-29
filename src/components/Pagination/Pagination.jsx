@@ -1,10 +1,8 @@
 import React from 'react';
 
-const Pagination = (page, numOfCoinsPerPage, setPage, data, coins) => {
+const Pagination = ({clickHandler}) => {
   return (
-    <div>
-      
-    </div>
+    <></>
   );
 }
 

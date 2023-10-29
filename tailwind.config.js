@@ -5,7 +5,7 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'sm': '360px',
+      'sm': '330px',
       'md': '768px',
       'lg': '1024px',
       'xl': '1280px',
@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'],
+        sans: ['OpenSans', 'Arial', 'sans-serif', 'Verdana'],
       }
     },
   },

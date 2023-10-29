@@ -6,8 +6,8 @@ const About = () => {
        <section className='main-content py-5'>
         <div className='body-content px-4'>
           <div>
-            <h1 className=' text-2xl my-5 text-center font-bold'>Welcome to Fetchcoin!</h1>
-            <p className=' text-lg text-center px-4 pb-5'>Keep up to date with the latest prices on your favorite Cryptocurrency!</p>
+            <h1 className=' text-3xl my-5 text-center font-bold'>Track your favorite Cryptocurrencies</h1>
+            <p className='text-center text-lg w-1/2 m-auto'>Monitor market prices, track your portfolio, and compare different cryptocurrencies, all in one single application.</p>
           </div>
         </div>
       </section>

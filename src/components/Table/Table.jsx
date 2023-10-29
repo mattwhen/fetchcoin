@@ -22,7 +22,7 @@ export default function Table() {
 		},
 		{
 			id: 2,
-			name: 'Last',
+			name: 'Price',
 		},
 		{
 			id: 3,
@@ -45,7 +45,7 @@ export default function Table() {
 	const mapHeaders = tableHeaders.map((item) => (
 		<th
 			key={item.id}
-			className='text-black font-normal text-left pl-3 py-2'
+			className='text-black font-normal text-left pl-4 py-2'
 			style={{ backgroundColor: '#F8FAFD' }}
 		>
 			{item.name}
@@ -122,7 +122,7 @@ export default function Table() {
 	return (
 		<>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
-			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
+			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>
 					<thead>
 						<tr>{mapHeaders}</tr>
@@ -135,9 +135,9 @@ export default function Table() {
 								page * numOfCoinsPerPage
 							)
 							.map((item, i) => (
-								<tr key={i} className='h-14'>
+								<tr key={i} className='h-14 hover-crypto'>
 									<td className='RANK'>
-										<div className='ml-6 w-20'>{item.rank}</div>
+										<div className='ml-6 w-20 font-light'>{item.rank}</div>
 									</td>
 									<td>
 										<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
@@ -159,7 +159,7 @@ export default function Table() {
 									<td className='PRICE'>
 										<div className='w-40 ml-2'>
 											<span className='text-right font-bold'>
-												{/* Rounds price to two decimal places */}$
+												{/* Rounds price to two decimal places */}
 												{numberWithCommas(item.price.toFixed(2))}
 											</span>
 										</div>
@@ -176,21 +176,21 @@ export default function Table() {
 									</td>
 									<td>
 										<div className=' w-36'>
-											<span className='font-bold ml-2'>
-												${renderNumberFormatting(item.marketCap)}
+											<span className=' ml-2'>
+												{renderNumberFormatting(item.marketCap)}
 											</span>
 										</div>
 									</td>
 									<td>
 										<div className='w-32 ml-2'>
-											<span className='font-bold'>
+											<span className='font-thin'>
 												{renderNumberFormatting(item.totalSupply)}
 											</span>
 										</div>
 									</td>
 									<td>
 										<div className='w-40 ml-2'>
-											<span className='font-bold'>
+											<span className='font-thin'>
 												{renderNumberFormatting(item.volume)}
 											</span>
 										</div>

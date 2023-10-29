@@ -31,6 +31,10 @@
     background-color: #c1bebe;
 }
 
+.hover-crypto:hover {
+    background-color: rgba(13,134,255,0.08);
+}
+
 .selected-page {
     padding: 0px;
     height: 32px;

@@ -17,7 +17,6 @@ html {
 }
 
 .green-change {
-	background-color: lightgreen;
 	color: #007200;
 	padding: 6px;
 	border-radius: 5px;
@@ -25,7 +24,6 @@ html {
 }
 
 .red-change {
-	background-color: rgba(255, 53, 53, 0.1);
 	color: #a4161a;
 	padding: 6px;
 	border-radius: 5px;
@@ -33,7 +31,6 @@ html {
 }
 
 .no-change {
-	background-color: rgba(67, 65, 65, 0.1);
 	color: grey;
 	padding: 6px;
 	border-radius: 5px;

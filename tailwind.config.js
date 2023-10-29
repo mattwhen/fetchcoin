@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['OpenSans', 'Arial', 'sans-serif', 'Verdana'],
+        sans: ['OpenSans-Regular', 'Arial', 'Helvetica', 'sans-serif', 'Verdana'],
       }
     },
   },

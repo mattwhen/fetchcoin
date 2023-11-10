@@ -13,9 +13,6 @@ const Mission = () => {
 			id: 1,
 			title: 'Market Analysis Tools',
 		},
-		{
-			
-		}
 
 	]
 
@@ -24,7 +21,7 @@ const Mission = () => {
 				<h2 className='text-center text-4xl mt-20 mb-10'>Our Mission</h2>
 			<div id='mission' className='CONTAINER p-4 flex flex-col justify-center gap-10 text-center lg:flex-row lg:gap-1'>
 				<div className='p-5 border-solid border-4 rounded-xl border-sky-700 lg:w-96'>
-					<h3 className='text-3xl pb-5'>Title 1</h3>
+					<h3 className='text-2xl pb-5'>Secure Wallet</h3>
 					<div className='flex flex-col justify-center items-center'>
 						<TfiWallet className='text-5xl mb-5' />
 						<p>
@@ -40,7 +37,7 @@ const Mission = () => {
 				</div>
 				<div className='p-5 border-solid border-4 rounded-xl border-sky-700 mx-2 lg:w-96'>
 					<div className='flex flex-col justify-center items-center'>
-						<h3 className='text-3xl pb-5'>Title 2</h3>
+						<h3 className='text-2xl pb-5'>Price tracking</h3>
 						<AiOutlineStock className='text-5xl mb-5' />
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
@@ -55,7 +52,7 @@ const Mission = () => {
 				</div>
 				<div className='p-5 border-solid border-4 rounded-xl border-sky-700 mx-2 lg:w-96'>
 					<div className='flex flex-col justify-center items-center'>
-						<h3 className='text-3xl pb-5'>Title 3</h3>
+						<h3 className='text-2xl pb-5'>Hassle-free transactions</h3>
 						<TfiCreditCard className='text-5xl mb-5'/>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam

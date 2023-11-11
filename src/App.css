@@ -16,6 +16,11 @@ html {
 	@apply font-sans;
 }
 
+.center {
+	margin: auto;
+	width: 50%;
+}
+
 .green-change {
 	color: #007200;
 	padding: 6px;

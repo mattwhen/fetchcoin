@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Loading from '../Loading/Loading';
+import Search from '../Search/Search';
 import './Table.css';
 
 const apiKey = process.env.REACT_APP_KEY;
@@ -10,6 +11,8 @@ export default function Table() {
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
 	const numOfCoinsPerPage = 50;
+
+	const coinName = [];
 
 	const tableHeaders = [
 		{
@@ -79,6 +82,8 @@ export default function Table() {
 				console.log(json);
 				setData(json);
 				setLoading(false);
+				coinName.push(...json.result);
+				console.log('Coin names', coinName);
 			})
 			.catch((error) => console.error(error));
 
@@ -113,6 +118,7 @@ export default function Table() {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
 	}
 
+
 	// While fetching data, display message to user that the data is currently trying to render itself.
 	if (loading) return <Loading mapHeaders={mapHeaders} />;
 
@@ -121,6 +127,7 @@ export default function Table() {
 
 	return (
 		<>
+			<Search />
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>

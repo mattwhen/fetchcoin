@@ -12,8 +12,6 @@ export default function Table() {
 	const [page, setPage] = useState(1);
 	const numOfCoinsPerPage = 50;
 
-	const coinName = [];
-
 	const tableHeaders = [
 		{
 			id: 0,
@@ -50,7 +48,7 @@ export default function Table() {
 			key={item.id}
 			className='text-black font-normal text-left pl-4 py-2'
 			style={{ backgroundColor: '#F8FAFD' }}
-		>
+		> 
 			{item.name}
 		</th>
 	));
@@ -79,11 +77,9 @@ export default function Table() {
 		fetch(url, options)
 			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
 			.then((json) => {
-				console.log(json);
-				setData(json);
+				console.log('Json data', json.result);
+				setData(json.result);
 				setLoading(false);
-				coinName.push(...json.result);
-				console.log('Coin names', coinName);
 			})
 			.catch((error) => console.error(error));
 
@@ -92,7 +88,7 @@ export default function Table() {
 			fetch(url, options)
 				.then((response) => response.json())
 				.then((json) => {
-					setData(json);
+					setData(json.result);
 				})
 				.catch((error) => console.error(error));
 		}, 10000);
@@ -108,7 +104,7 @@ export default function Table() {
 	}
 
 	// Handles assigning classes to each of the price change elements depending if there was a positive, negative, or no change in it's price.
-	function renderClassName(currentChange) {
+	function percentageChange(currentChange) {
 		if (currentChange === 0) return 'no-change';
 		return currentChange > 0 ? 'green-change' : 'red-change';
 	}
@@ -118,16 +114,26 @@ export default function Table() {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
 	}
 
+	// Filter for Coin name
+	function findMatches(nameToMatch, data) {
+		return data.filter(name => {
+			
+		})
+	}
+
+	// Render search for Coin name
+	function displayMatch(e) {
+
+		console.log(e.target.value);
+	}
+
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
 	if (loading) return <Loading mapHeaders={mapHeaders} />;
 
-	// <------------------------------------ USED FOR ADDING ADDITONAL DATA. REMOVE WHEN COMPLETE. ------------------------------>
-	console.log('COIN DATA', data.result.length);
-
 	return (
 		<>
-			<Search />
+			<Search displayMatch={displayMatch} />
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>
@@ -136,11 +142,8 @@ export default function Table() {
 					</thead>
 					<tbody className='w-40'>
 						{/* Render Coinstats API data */}
-						{data.result
-							.slice(
-								page * numOfCoinsPerPage - numOfCoinsPerPage,
-								page * numOfCoinsPerPage
-							)
+						{data
+							.slice(	page * numOfCoinsPerPage - numOfCoinsPerPage,page * numOfCoinsPerPage)
 							.map((item, i) => (
 								<tr key={i} className='h-14 hover-crypto'>
 									<td className='RANK'>
@@ -166,6 +169,7 @@ export default function Table() {
 									<td className='PRICE'>
 										<div className='w-40 ml-2'>
 											<span className='text-right font-bold'>
+											<span className={percentageChange(item.price)}></span>
 												{/* Rounds price to two decimal places */}
 												{numberWithCommas(item.price.toFixed(2))}
 											</span>
@@ -175,7 +179,7 @@ export default function Table() {
 										<div className='flex justify-start w-32'>
 											<span
 												// Sets the class depending on whether the price is POSITIVE or NEGATIVE.
-												className={renderClassName(item.priceChange1d)}
+												className={percentageChange(item.priceChange1d)}
 											>
 												{item.priceChange1d}%
 											</span>
@@ -224,7 +228,7 @@ export default function Table() {
 
 					{/* TODO: When the user is on the 5th page, render page numbers from 5 - 10 and so on... */}
 
-					{[...Array(data.result.length / numOfCoinsPerPage)]
+					{[...Array(data.length / numOfCoinsPerPage)]
 						.slice(0, 5)
 						.map((_, index) => {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
@@ -247,15 +251,15 @@ export default function Table() {
 					{/* Displays the last page of our Pagination */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => setPage(data.result.length / 50)}
+						onClick={() => setPage(data.length / 50)}
 					>
-						{data.result.length / 50}
+						{data.length / 50}
 					</li>
 					{/* Renders the next page of Coin data */}
 					<li
 						className='cursor-pointer ml-8'
 						onClick={() =>
-							page >= data.result.length / 50 ? null : setPage(page + 1)
+							page >= data.length / 50 ? null : setPage(page + 1)
 						}
 					>
 						➡️

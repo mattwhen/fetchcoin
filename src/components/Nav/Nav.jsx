@@ -51,6 +51,7 @@ const Nav = () => {
 		};
 
 	}, []);
+	
 	return (
 		<>
 			<nav
@@ -105,9 +106,9 @@ const Nav = () => {
 							onClick={navOpenHandler}
 						>
 							{navOpen ? (
-								<RxCross1 className='z-50 transition-all' />
+								<RxCross1 className='z-50 transition-all text-gray-700' />
 							) : (
-								<GiHamburgerMenu className=' text-white' />
+								<GiHamburgerMenu className=' text-gray-700' />
 							)}
 						</a>
 					</div>

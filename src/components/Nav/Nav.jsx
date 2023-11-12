@@ -84,18 +84,19 @@ const Nav = () => {
 											document.body.scrollTop = 0;
 											document.documentElement.scrollTop = 0;
 										}}
+										className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before hvr-underline-from-left:focus:active '}
 									>
 										ABOUT
 									</a>
 								</li>
 								<li>
-									<a href='#crypto'>CRYPTOCURRENCIES</a>
+									<a href='#crypto' className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >CRYPTO</a>
 								</li>
 								<li>
-									<a href='#mission'>MISSION</a>
+									<a href='#mission'className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >MISSION</a>
 								</li>
 								<li>
-									<a href='#contact'>CONTACT</a>
+									<a href='#contact' className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >CONTACT</a>
 								</li>
 							</ul>
 						</div>
@@ -134,7 +135,7 @@ const Nav = () => {
 								href='#crypto'
 								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
 							>
-								CRYPTOCURRENCIES
+								CRYPTO
 							</a>
 						</li>
 						<li className=' border-gray-400 '>

@@ -109,6 +109,10 @@ export default function Table() {
 		return currentChange > 0 ? 'green-change' : 'red-change';
 	}
 
+	function priceColor() {
+		
+	}
+
 	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
 	function renderNumberFormatting(num) {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
@@ -117,7 +121,7 @@ export default function Table() {
 	// Filter for Coin name
 	function findMatches(nameToMatch, data) {
 		return data.filter(name => {
-			
+
 		})
 	}
 

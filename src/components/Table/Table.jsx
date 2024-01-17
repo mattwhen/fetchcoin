@@ -137,7 +137,7 @@ export default function Table() {
 
 	return (
 		<>
-			<Search displayMatch={displayMatch} />
+			{/* <Search displayMatch={displayMatch} /> */}
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>

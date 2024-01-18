@@ -18,8 +18,8 @@ const Mission = () => {
 
 	return (
 		<>
-				<h2 className='text-center text-4xl mt-20 mb-10'>Our Mission</h2>
-			<div id='mission' className='CONTAINER p-4 flex flex-col justify-center gap-10 text-center lg:flex-row lg:gap-1'>
+				<h2 id='mission' className='text-center text-4xl pt-20 pb-10'>Our Mission</h2>
+			<div className='CONTAINER p-4 flex flex-col justify-center gap-10 text-center lg:flex-row lg:gap-1'>
 				<div className='p-5 border-solid border-4 rounded-xl border-sky-700 mx-5 lg:w-96'>
 					<h3 className='text-2xl pb-5'>Secure Wallet</h3>
 					<div className='flex flex-col justify-center items-center'>

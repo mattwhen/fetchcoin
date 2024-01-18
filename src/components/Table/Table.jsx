@@ -109,28 +109,11 @@ export default function Table() {
 		return currentChange > 0 ? 'green-change' : 'red-change';
 	}
 
-	function priceColor() {
-		
-	}
 
 	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
 	function renderNumberFormatting(num) {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
 	}
-
-	// Filter for Coin name
-	function findMatches(nameToMatch, data) {
-		return data.filter(name => {
-
-		})
-	}
-
-	// Render search for Coin name
-	function displayMatch(e) {
-
-		console.log(e.target.value);
-	}
-
 
 	// While fetching data, display message to user that the data is currently trying to render itself.
 	if (loading) return <Loading mapHeaders={mapHeaders} />;

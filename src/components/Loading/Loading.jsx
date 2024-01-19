@@ -3,13 +3,14 @@ import React from 'react';
 const Loading = ({ mapHeaders }) => {
 	return (
 		<>
-			<section className='overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-96 lg:h-96 lg:m-auto'>
+			<section className='flex justify-center items-center overflow-x-auto border-2 border-sky-700 rounded-md mx-2 lg:w-[1080px] lg:h-[400px] lg:m-auto'>
 				<table className='table-auto'>
-					<thead>
-						<tr>{mapHeaders}</tr>
-					</thead>
+					{/* <thead>
+						<tr className='w-[600px]'>{mapHeaders}</tr>
+					</thead> */}
+					<tbody className='w-40'></tbody>
 				</table>
-						<div className=' relative m-0 flex justify-center mt-20'>
+						<div className=''>
 							<div id='loader'></div>
 						</div>
 			</section>

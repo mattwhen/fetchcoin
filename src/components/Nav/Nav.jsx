@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../images/Logo.png';
+import LightLogo from '../../images/Logo_whiteBg.png';
 import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { RxCross1 } from 'react-icons/rx';
@@ -55,26 +55,26 @@ const Nav = () => {
 	return (
 		<>
 			<nav
-				className=' flex items-center bg-white sticky top-0 z-50 h-16 p-5 shadow-md'
+				className=' flex justify-center items-center bg-white sticky top-0 z-50 h-16 shadow-md'
 				id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
 			>
-				<div className='flex w-full items-center  justify-between'>
+				<div className='flex items-center mx-0'>
 					<div className='left-nav-section'>
 						<a href='#home' className=' text-gray-500 text-2xl'>
 							<img
-								src={Logo}
+								src={LightLogo}
 								alt='company-logo'
 								className=' rounded-lg'
 								onClick={() => {
 									document.body.scrollTop = 0;
 									document.documentElement.scrollTop = 0;
 								}}
-								height={50}
-								width={50}
+								height={150}
+								width={150}
 							></img>
 						</a>
 					</div>
-					<div className='right-nav-section'>
+					<div className='right-nav-section flex justify-end w-[1000px]'>
 						<div className='sm:hidden md:block lg:block'>
 							<ul className='flex justify-evenly gap-10 text-black'>
 								<li className=''>

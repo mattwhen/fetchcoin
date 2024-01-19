@@ -48,7 +48,7 @@ export default function Table() {
 			key={item.id}
 			className='text-black font-normal text-left pl-4 py-2'
 			style={{ backgroundColor: '#F8FAFD' }}
-		> 
+		>
 			{item.name}
 		</th>
 	));
@@ -109,7 +109,6 @@ export default function Table() {
 		return currentChange > 0 ? 'green-change' : 'red-change';
 	}
 
-
 	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
 	function renderNumberFormatting(num) {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
@@ -130,7 +129,10 @@ export default function Table() {
 					<tbody className='w-40'>
 						{/* Render Coinstats API data */}
 						{data
-							.slice(	page * numOfCoinsPerPage - numOfCoinsPerPage,page * numOfCoinsPerPage)
+							.slice(
+								page * numOfCoinsPerPage - numOfCoinsPerPage,
+								page * numOfCoinsPerPage
+							)
 							.map((item, i) => (
 								<tr key={i} className='h-14 hover-crypto'>
 									<td className='RANK'>
@@ -146,7 +148,7 @@ export default function Table() {
 												></img>
 											</div>
 											<div className='flex flex-col'>
-												<span className='text-sm font-bold leading-4 text-left'>
+												<span className='text-sm leading-4 text-left'>
 													{item.name}
 												</span>
 												<span className='text-sm font-semi'>{item.symbol}</span>
@@ -155,8 +157,7 @@ export default function Table() {
 									</td>
 									<td className='PRICE'>
 										<div className='w-40 ml-2'>
-											<span className='text-right font-bold'>
-											<span className={percentageChange(item.price)}></span>
+											<span className={percentageChange(item.priceChange1d)}>
 												{/* Rounds price to two decimal places */}
 												{numberWithCommas(item.price.toFixed(2))}
 											</span>
@@ -221,7 +222,11 @@ export default function Table() {
 							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
 							return (
 								<li
-									className={page === (index + 1) ? 'selected-page' : 'pagination-item pagination-item:hover'}
+									className={
+										page === index + 1
+											? 'selected-page'
+											: 'pagination-item pagination-item:hover'
+									}
 									key={index.id}
 									onClick={() => handleClick(index + 1)}
 								>

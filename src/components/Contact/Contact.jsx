@@ -23,7 +23,7 @@ const Contact = () => {
 	];
 
 	return (
-		<div className=' max-w-md m-auto p-4'>
+		<div id='contact' className=' max-w-md m-auto p-4'>
 			<h2 className='mt-20 text-4xl mb-10'>Contact Us</h2>
 			<p className='mb-10 text-md'>Contact us during our normal working ours to learn more about our product. Fetchcoin values your feedback to provide you with the best possible experience.</p>
 			{fields.map(item => {

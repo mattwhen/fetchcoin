@@ -8,17 +8,18 @@ import Mission from './components/Mission/Mission';
 import Contact from './components/Contact/Contact';
 
 const App = () => {
-  return (
-    <>
-      <Nav/>
-      <About/>
-      <Table/>
-      <Mission/>
-      <Contact/>
-      <Footer/>
-    </>
-  );
-}
+	return (
+		<>
+			<Nav/>
+			<body>
+				<About />
+				<Table />
+				<Mission />
+				<Contact />
+			</body>
+			<Footer />
+		</>
+	);
+};
 
 export default App;
-

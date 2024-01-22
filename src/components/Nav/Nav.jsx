@@ -10,23 +10,45 @@ const Nav = () => {
 	// useState returns an array with exactly two values
 	// 1. The current state.
 	// 2. The set function that lets you update the state to a different value
-	const [navOpen, setNavOpen] = useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
 	const [showNav, setShowNav] = useState(true);
 	const [previousScroll, setPreviousScroll] = useState(0);
 
 	// Prevent/hide scrolling when the Navigation menu is opened.
-	const navOpenHandler = () => {
-		if (navOpen) {
+	const mobileOpenHandler = () => {
+		if (mobileOpen) {
 			document.getElementsByTagName('body')[0].style.overflow = 'visible';
-			setNavOpen(false);
+			setMobileOpen(false);
 		} else {
 			document.getElementsByTagName('body')[0].style.overflow = 'hidden';
-			setNavOpen(true);
+			setMobileOpen(true);
 		}
 	};
 
-	const scrollHandler = () => {
+	const navLinks = [
+		{
+			id: 0,
+			title: 'ABOUT',
+			link: '#about',
+		},
+		{
+			id: 1,
+			title: 'CRYPTO',
+			link: '#crypto',
+		},
+		{
+			id: 2,
+			title: 'MISSION',
+			link: '#mission',
+		},
+		{
+			id: 3,
+			title: 'CONTACT',
+			link: '#contact',
+		},
+	];
 
+	const scrollHandler = () => {
 		window.addEventListener('scroll', function (e) {
 			// Get the new Value
 			let currentScroll = window.pageYOffset;
@@ -47,115 +69,61 @@ const Nav = () => {
 		window.addEventListener('scroll', scrollHandler);
 
 		return () => {
-		  window.removeEventListener('scroll', scrollHandler);
+			window.removeEventListener('scroll', scrollHandler);
 		};
-
 	}, []);
-	
+
 	return (
 		<>
 			<nav
-				className=' flex justify-center items-center bg-white sticky top-0 z-50 h-16 shadow-md'
-				id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
+				// id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
+				className='bg-white sticky top-0 px-4 z-50 h-14 max-w-[1920px] shadow-sm'
 			>
-				<div className='flex items-center mx-0'>
-					<div className='left-nav-section'>
-						<a href='#home' className=' text-gray-500 text-2xl'>
-							<img
-								src={LightLogo}
-								alt='company-logo'
-								className=' rounded-lg'
-								onClick={() => {
-									document.body.scrollTop = 0;
-									document.documentElement.scrollTop = 0;
-								}}
-								height={150}
-								width={150}
-							></img>
-						</a>
-					</div>
-					<div className='right-nav-section flex justify-end w-[1000px]'>
-						<div className='sm:hidden md:block lg:block'>
-							<ul className='flex justify-evenly gap-10 text-black'>
-								<li className=''>
-									<a
-										href='#about'
-										onClick={() => {
-											document.body.scrollTop = 0;
-											document.documentElement.scrollTop = 0;
-										}}
-										className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before hvr-underline-from-left:focus:active '}
-									>
-										ABOUT
-									</a>
-								</li>
-								<li>
-									<a href='#crypto' className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >CRYPTO</a>
-								</li>
-								<li>
-									<a href='#mission'className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >MISSION</a>
-								</li>
-								<li>
-									<a href='#contact' className={'hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before '} >CONTACT</a>
-								</li>
-							</ul>
-						</div>
-						<a
-							href='#home'
-							id='hamburger-menu'
-							className='text-4xl flex align-middle text-gray-500 md:hidden lg:hidden'
-							onClick={navOpenHandler}
-						>
-							{navOpen ? (
-								<RxCross1 className='z-50 transition-all text-gray-700' />
-							) : (
-								<GiHamburgerMenu className=' text-gray-700' />
-							)}
-						</a>
-					</div>
-				</div>
-				<section className='mobile-menu md:hidden lg:hidden'>
-					<ul
-						className={navOpen ? 'show-mobile-nav bg-white' : 'hide-mobile-nav'}
-					>
-						<li className=' border-gray-400'>
-							<a
-								href='#about'
-								onClick={() => {
-									document.body.scrollTop = 0;
-									document.documentElement.scrollTop = 0;
-									return navOpen ? setNavOpen(false) : setNavOpen(true);
-								}}
-							>
-								ABOUT
+					{/* DESKTOP NAVIGATION LINKS */}
+					<ul className='hidden w-full text-black lg:flex lg:justify-end lg:items-center' id='desktopUl'>
+						<li className=''>
+							<a href='#home'>
+								<img src={LightLogo} alt='Company Logo' width={150} height={150}></img>
 							</a>
 						</li>
-						<li className=' border-gray-400 '>
-							<a
-								href='#crypto'
-								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
-							>
-								CRYPTO
-							</a>
-						</li>
-						<li className=' border-gray-400 '>
-							<a
-								href='#mission'
-								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
-							>
-								MISSION
-							</a>
-						</li>
-						<li className=' border-gray-400 '>
-							<a
-								href='#contact'
-								onClick={() => (navOpen ? setNavOpen(false) : setNavOpen(true))}
-							>
-								CONTACT
-							</a>
-						</li>
+						{navLinks.map(({ id, title, link }) => {
+							return (
+								<li key={id}>
+									<a href={link} className='mx-5 hvr-underline-from-left hvr-underline-from-left:before hvr-underline-from-left:focus:before hvr-underline-from-left:focus:active'>{title}</a>
+								</li>
+							);
+						})}
 					</ul>
-				</section>
+				{/* Mobile view */}
+				<div className='flex items-center px-4 lg:hidden'>
+				<a href='#home'>
+								<img src={LightLogo} alt='Company Logo' width={150} height={150}></img>
+							</a>
+				<button
+					id='hamburger-menu'
+					className='text-4xl flex align-middle text-gray-500 ml-auto lg:hidden'
+					onClick={mobileOpenHandler}
+				>
+					{mobileOpen ? (
+						<RxCross1 className='z-50 transition-all text-gray-700' />
+					) : (
+						<GiHamburgerMenu className=' text-gray-700' />
+					)}
+				</button>
+				</div>
+				{/* HAMBURGER MENU OPTIONS */}
+					<ul
+						className={mobileOpen ? 'show-mobile-nav bg-white ' : 'hide-mobile-nav'}
+					>
+
+						{navLinks.map(({ id, title, link }) => {
+							return (
+								<li key={id}>
+									<a href={link} onClick={() => mobileOpenHandler(false)}>{title}</a>
+								</li>
+							);
+						})}
+					</ul>
 			</nav>
 		</>
 	);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaGithub, FaLinkedin, FaTiktok, FaXTwitter } from 'react-icons/fa6';
+import LogoLight from '../../images/Logo_whiteBg.png';
 
 const Footer = () => {
 	const footerLinks = [
@@ -47,10 +48,11 @@ const Footer = () => {
 
 	return (
 		<footer className='bg-gray bg-stone-300 bottom-0 mt-28'>
-			<div className='footerContainer flex items-start justify-center py-14'>
+			<div className='footerContainer flex flex-col lg:flex-row lg:justify-center lg:items-start py-14'>
+				<img src={LogoLight} alt='Company Logo' width={150} height={150}></img>
 				{footerLinks.map(({ id, title, links }) => {
 					return (
-						<div className='lg:mx-8'>
+						<div className='my-4 lg:mx-8'>
 							<h2 className='text-2xl'>{title}</h2>
 							<ul className='flex flex-col'>
 								<li className='cursor-pointer hvr-fade hover:text-yellow'>
@@ -79,7 +81,7 @@ const Footer = () => {
 				<FaXTwitter className='text-3xl cursor-pointer m-auto' />
 			</ul>
 			<div className='flex justify-center pb-8'>
-				<p>© 2023 Matthew A. Nguyen. All Rights Reserved.</p>
+				<p className='text-sm md:text-md'>© 2023 Matthew A. Nguyen. All Rights Reserved.</p>
 			</div>
 		</footer>
 	);

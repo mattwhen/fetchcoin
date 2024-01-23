@@ -47,9 +47,9 @@ const Footer = () => {
 	];
 
 	return (
-		<footer className='bg-gray bg-stone-300 bottom-0 mt-28'>
+		<footer className='border border-y-2 bottom-0 px-6'>
 			<div className='footerContainer flex flex-col lg:flex-row lg:justify-center lg:items-start py-14'>
-				<img src={LogoLight} alt='Company Logo' width={150} height={150}></img>
+				<img src={LogoLight} className='cursor-pointer' alt='Company Logo' width={150} height={150} onClick={() => window.location.href = 'https://mattwhen.github.io/fetchcoin/'}></img>
 				{footerLinks.map(({ id, title, links }) => {
 					return (
 						<div className='my-4 lg:mx-8'>

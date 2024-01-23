@@ -4,6 +4,13 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
+    colors:{
+      'gold-trim': '#BB9979',
+      'gold-trim-hover': '94785f',
+      'white': '#FFFFFF',
+      'white-hover': '#cfcccc',
+      'black': '#000000',
+    },
     screens: {
       'sm': '330px',
       'md': '768px',

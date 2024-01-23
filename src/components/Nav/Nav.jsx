@@ -77,14 +77,12 @@ const Nav = () => {
 		<>
 			<nav
 				// id={showNav ? 'navbar-js-show' : 'navbar-js-hidden'}
-				className='bg-white sticky top-0 px-4 z-50 h-14 max-w-[1920px] shadow-sm'
+				className='bg-white sticky top-0 px-4 z-50 h-16 max-w-[1920px] shadow-sm'
 			>
 					{/* DESKTOP NAVIGATION LINKS */}
 					<ul className='hidden w-full text-black lg:flex lg:justify-end lg:items-center' id='desktopUl'>
 						<li className=''>
-							<a href='#home'>
-								<img src={LightLogo} alt='Company Logo' width={150} height={150}></img>
-							</a>
+								<img src={LightLogo} className='cursor-pointer' alt='Company Logo' width={150} height={150} onClick={() => window.location.href = 'https://mattwhen.github.io/fetchcoin/'}></img>
 						</li>
 						{navLinks.map(({ id, title, link }) => {
 							return (
@@ -95,10 +93,8 @@ const Nav = () => {
 						})}
 					</ul>
 				{/* Mobile view */}
-				<div className='flex items-center px-4 lg:hidden'>
-				<a href='#home'>
-								<img src={LightLogo} alt='Company Logo' width={150} height={150}></img>
-							</a>
+				<div className='flex items-center lg:hidden'>
+								<img src={LightLogo} className='cursor-pointer' alt='Company Logo' width={150} height={150} onClick={() => window.location.href = 'https://mattwhen.github.io/fetchcoin/'}></img>
 				<button
 					id='hamburger-menu'
 					className='text-4xl flex align-middle text-gray-500 ml-auto lg:hidden'

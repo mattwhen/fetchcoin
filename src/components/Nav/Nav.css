@@ -22,7 +22,7 @@ display: none;
 
 .show-mobile-nav {
 	position: fixed;
-	width: 50vw;
+	width: 100vw;
 	height: 100vh;
 	top: 0; 
 	right: 0;

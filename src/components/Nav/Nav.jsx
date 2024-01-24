@@ -7,9 +7,6 @@ import '../../App.css';
 import './Nav.css';
 
 const Nav = () => {
-	// useState returns an array with exactly two values
-	// 1. The current state.
-	// 2. The set function that lets you update the state to a different value
 	const [mobileOpen, setMobileOpen] = useState(false);
 	const [showNav, setShowNav] = useState(true);
 	const [previousScroll, setPreviousScroll] = useState(0);
@@ -47,6 +44,17 @@ const Nav = () => {
 			link: '#contact',
 		},
 	];
+
+	const navButtons = [
+		{
+			id: 0,
+			title: 'Sign Up',
+		},
+		{
+			id: 1,
+			title: 'Log In',
+		}
+	]
 
 	const scrollHandler = () => {
 		window.addEventListener('scroll', function (e) {

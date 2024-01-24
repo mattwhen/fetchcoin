@@ -9,7 +9,9 @@ module.exports = {
       'gold-trim-hover': '94785f',
       'white': '#FFFFFF',
       'white-hover': '#cfcccc',
+      'footer-bg': '#e8e6e6',
       'black': '#000000',
+      'border-footer': 'border-top-color: rgb(51 65 85);'
     },
     screens: {
       'sm': '330px',

@@ -11,7 +11,7 @@ export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
-	const numOfCoinsPerPage = 50;
+	const numOfCoinsPerPage = 20;
 
 	const tableHeaders = [
 		{
@@ -55,6 +55,7 @@ export default function Table() {
 	));
 
 	function handleClick(currentPage) {
+		console.log('Current Page:', currentPage);
 		setPage(currentPage);
 	}
 
@@ -121,6 +122,7 @@ export default function Table() {
 	return (
 		<>
 			{/* <Search displayMatch={displayMatch} /> */}
+			<Pagination data={data} page={page} setPage={setPage} numOfCoinsPerPage={numOfCoinsPerPage} handleClick={handleClick}/>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>
@@ -135,7 +137,7 @@ export default function Table() {
 								page * numOfCoinsPerPage
 							)
 							.map((item, i) => (
-								<tr key={i} className='h-14 hover-crypto'>
+								<tr key={i} className='h-14 hover-crypto'>	
 									<td className='RANK'>
 										<div className='ml-6 w-20 font-light'>{item.rank}</div>
 									</td>

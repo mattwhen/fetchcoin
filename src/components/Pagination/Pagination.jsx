@@ -10,14 +10,27 @@ const Pagination = ({
 }) => {
 	return (
 		<>
-			<div className='flex justify-center m-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
-				<ul className='flex justify-between w-full md:w-1/2'>
+			<div className='flex justify-center my-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
+				<ul className='flex justify-evenly items-center w-full md:w-1/2'>
 					{/* Renders the PREVIOUS page of Coin data */}
 					<li
 						className='hidden md:cursor-pointer md:mr-8 md:flex md:align-middle'
 						onClick={() => (page <= 1 ? null : setPage(page - 1))}
 					>
-						⬅️
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							stroke-width='1.5'
+							stroke='currentColor'
+							className='w-6 h-6 pagination-item:hover'
+						>
+							<path
+								stroke-linecap='round'
+								stroke-linejoin='round'
+								d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
+							/>
+						</svg>
 					</li>
 					{/* Create a new array with our Coin data, taking the total amount of coins in our API call
 							and divide it by the number of coins rendered onto the page.*/}
@@ -44,16 +57,16 @@ const Pagination = ({
 					the "..." will render page 9 data. */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => (page < 20 ? setPage(page + 5) : null)}
+						onClick={() => (page + 5 < 20 ? setPage(page + 5) : null)}
 					>
 						...
 					</li>
 					{/* Displays the LAST page of Coin data */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => setPage(data.length / 50)}
+						onClick={() => setPage(data.length / numOfCoinsPerPage)}
 					>
-						{data.length / 50}
+						{data.length / numOfCoinsPerPage}
 					</li>
 					{/* Renders the NEXT page of Coin data */}
 					<li
@@ -62,7 +75,20 @@ const Pagination = ({
 							page >= data.length / 50 ? null : setPage(page + 1)
 						}
 					>
-						➡️
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							stroke-width='1.5'
+							stroke='currentColor'
+							class='w-6 h-6'
+						>
+							<path
+								stroke-linecap='round'
+								stroke-linejoin='round'
+								d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3'
+							/>
+						</svg>
 					</li>
 				</ul>
 			</div>

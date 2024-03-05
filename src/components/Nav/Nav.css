@@ -18,7 +18,13 @@
 display: none;
 }
 
+.logo {
+  flex: 0.2; 
+}
 
+.nav-links {
+  flex: 0.6;
+}
 
 .show-mobile-nav {
 	position: fixed;

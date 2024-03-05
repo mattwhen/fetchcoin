@@ -57,7 +57,7 @@ const Pagination = ({
 					the "..." will render page 9 data. */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => (page + 5 < 20 ? setPage(page + 5) : null)}
+						onClick={() => (page + 5 < (data.length / numOfCoinsPerPage) ? setPage(page + 5) : null)}
 					>
 						...
 					</li>
@@ -72,7 +72,7 @@ const Pagination = ({
 					<li
 						className='hidden md:cursor-pointer md:ml-8 md:flex md:align-middle'
 						onClick={() =>
-							page >= data.length / 50 ? null : setPage(page + 1)
+							page >= data.length / numOfCoinsPerPage ? null : setPage(page + 1)
 						}
 					>
 						<svg

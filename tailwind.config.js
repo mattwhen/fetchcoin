@@ -22,7 +22,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['OpenSans-Regular', 'Arial', 'Helvetica', 'sans-serif', 'Verdana'],
+        sans: ['Roboto', 'OpenSans-Regular', 'Arial', 'Helvetica', 'sans-serif', 'Verdana'],
       }
     },
   },

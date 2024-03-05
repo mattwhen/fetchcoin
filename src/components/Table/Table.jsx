@@ -116,13 +116,20 @@ export default function Table() {
 		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
 	}
 
-	// While fetching data, display message to user that the data is currently trying to render itself.
+	// While fetching data, display spinning icon to user that the data is currently trying to render itself.
 	if (loading) return <Loading mapHeaders={mapHeaders} />;
 
 	return (
 		<>
-			{/* <Search displayMatch={displayMatch} /> */}
-			<Pagination data={data} page={page} setPage={setPage} numOfCoinsPerPage={numOfCoinsPerPage} handleClick={handleClick}/>
+			<div id='crypto' className='mb-4'>
+				<Pagination
+					data={data}
+					page={page}
+					setPage={setPage}
+					numOfCoinsPerPage={numOfCoinsPerPage}
+					handleClick={handleClick}
+				/>
+			</div>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto'>
@@ -137,7 +144,7 @@ export default function Table() {
 								page * numOfCoinsPerPage
 							)
 							.map((item, i) => (
-								<tr key={i} className='h-14 hover-crypto'>	
+								<tr key={i} className='h-14 hover-crypto'>
 									<td className='RANK'>
 										<div className='ml-6 w-20 font-light'>{item.rank}</div>
 									</td>
@@ -151,7 +158,7 @@ export default function Table() {
 												></img>
 											</div>
 											<div className='flex flex-col'>
-												<span className='text-sm leading-4 text-left'>
+												<span className='text-sm leading-4 text-left font-bold'>
 													{item.name}
 												</span>
 												<span className='text-sm font-semi'>{item.symbol}</span>
@@ -178,21 +185,21 @@ export default function Table() {
 									</td>
 									<td>
 										<div className=' w-36'>
-											<span className=' ml-2'>
+											<span className='ml-2 font-normal'>
 												{renderNumberFormatting(item.marketCap)}
 											</span>
 										</div>
 									</td>
 									<td>
 										<div className='w-32 ml-2'>
-											<span className='font-thin'>
+											<span className='font-normal'>
 												{renderNumberFormatting(item.totalSupply)}
 											</span>
 										</div>
 									</td>
 									<td>
 										<div className='w-40 ml-2'>
-											<span className='font-thin'>
+											<span className='font-normal'>
 												{renderNumberFormatting(item.volume)}
 											</span>
 										</div>
@@ -203,7 +210,13 @@ export default function Table() {
 				</table>
 			</section>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
-			<Pagination data={data} page={page} setPage={setPage} numOfCoinsPerPage={numOfCoinsPerPage} handleClick={handleClick}/>
+			<Pagination
+				data={data}
+				page={page}
+				setPage={setPage}
+				numOfCoinsPerPage={numOfCoinsPerPage}
+				handleClick={handleClick}
+			/>
 		</>
 	);
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 
-const About = () => {
+const Intro = () => {
 	return (
 		<>
 			<section className=''>
 				<div className='left-container'>
-					<h1 className=' text-3xl my-5 text-center font-normal'>
+					<h1 id='about' className=' text-3xl my-5 text-center font-normal'>
 						Track your favorite Cryptocurrencies
 					</h1>
 				</div>
@@ -20,4 +20,4 @@ const About = () => {
 	);
 };
 
-export default About;
+export default Intro;

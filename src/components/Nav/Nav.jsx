@@ -70,7 +70,7 @@ const Nav = () => {
 					id='desktopUl'
 				>
 					<div className='logo lg:flex lg:justify-center'>
-						<a href='https://mattwhen.github.io/fetchcoin/' className=''>
+						<a href='/' className=''>
 							<img
 								src={LightLogo}
 								className='cursor-pointer'
@@ -110,7 +110,7 @@ const Nav = () => {
 					</div>
 				</div>
 				{/* Mobile view */}
-				<div className='flex items-center lg:hidden'>
+				<div className='flex items-center px-4 lg:hidden'>
 					<img
 						src={LightLogo}
 						className='cursor-pointer'

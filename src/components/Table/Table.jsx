@@ -45,13 +45,12 @@ export default function Table() {
 	];
 
 	const mapHeaders = tableHeaders.map((coin) => (
-		<th
+		<tr
 			key={coin.id}
-			className='text-black font-normal text-left pl-4 py-2'
-			style={{ backgroundColor: '#F8FAFD' }}
+			className='text-black font-normal ml-4 flex items-center w-full h-10'
 		>
 			{coin.name}
-		</th>
+		</tr>
 	));
 
 	function handleClick(currentPage) {
@@ -133,8 +132,8 @@ export default function Table() {
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto mt-8'>
-					<thead>
-						<tr>{mapHeaders}</tr>
+					<thead className='flex items-center bg-silver-background'>
+					{mapHeaders}
 					</thead>
 					<tbody className='w-40'>
 						{/* Render Coinstats API data */}
@@ -145,16 +144,16 @@ export default function Table() {
 							)
 							.map((coin, i) => (
 								<>
-									<Link to={`/coin/${coin.id}`}>
+											<Link to={`/coin/${coin.id}`} >
 										<tr
 											key={i}
-											className='h-14 hover-crypto lg:hover:cursor-pointer'
+											className='h-14 hover-crypto flex items-center lg:hover:cursor-pointer'
 										>
 											<td className='RANK'>
-												<div className='ml-6 w-20 font-light'>{coin.rank}</div>
+												<div className='ml-6 w-32 font-light'>{coin.rank}</div>
 											</td>
 											<td>
-												<div className='NAME flex items-center pl-2 mr-11 w-44 overflow-auto'>
+												<div className='NAME flex items-center pl-2 w-44 overflow-auto'>
 													<div className='text-left'>
 														<img
 															src={coin.icon}
@@ -162,7 +161,7 @@ export default function Table() {
 															alt='crypto-icon'
 														></img>
 													</div>
-													<div className='flex flex-col'>
+													<div className='flex flex-col justify-center'>
 														<span className='text-sm leading-4 text-left font-bold'>
 															{coin.name}
 														</span>

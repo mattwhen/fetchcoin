@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     colors:{
       'gold-trim': '#BB9979',
+      'silver-background': '#F8FAFD',
       'gold-trim-hover': '#94785f',
       'white': '#FFFFFF',
       'white-hover': '#cfcccc',

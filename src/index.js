@@ -4,17 +4,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import './App.css';
-import About from './routes/About/About.jsx';
+import CoinRoute from './Routes/CoinRoute/CoinRoute';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/fetchcoin',
 		element: <App />,
 		errorElement: <ErrorPage />,
 	},
 	{
 		path: '/coin/:coinId',
-		element: <About />,
+		element: <CoinRoute />,
 		errorElement: <ErrorPage />,
 	},
 ]);

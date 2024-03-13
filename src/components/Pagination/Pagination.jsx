@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import './Pagination.css';
 
 const Pagination = ({
@@ -8,6 +8,8 @@ const Pagination = ({
 	numOfCoinsPerPage,
 	handleClick,
 }) => {
+	const [currentPage, setCurrentPage] = useState(1);
+
 	return (
 		<>
 			<div className='flex justify-center my-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
@@ -35,29 +37,52 @@ const Pagination = ({
 					{/* Create a new array with our Coin data, taking the total amount of coins in our API call
 							and divide it by the number of coins rendered onto the page.*/}
 					{/* TODO: When the user is on the 5th page, render page numbers from 5 - 10 and so on... */}
-					{[...Array(data.length / numOfCoinsPerPage)]
-						.slice(0, 5)
-						.map((_, index) => {
-							// Render the number of pages in our Pagination section, based on the length of our newly created Array.
-							return (
-								<li
-									className={
-										page === index + 1
-											? 'selected-page'
-											: 'pagination-item pagination-item:hover'
-									}
-									key={index.id}
-									onClick={() => handleClick(index + 1)}
-								>
-									{index + 1}
-								</li>
-							);
-						})}
+					{page < 5
+						? [...Array(data.length / numOfCoinsPerPage)]
+								.slice(0, 5)
+								.map((_, index) => {
+									// Render the number of pages in our Pagination section, based on the length of our newly created Array.
+									return (
+										<li
+											className={
+												page === index + 1
+													? 'selected-page'
+													: 'pagination-item pagination-item:hover'
+											}
+											key={index.id}
+											onClick={() => handleClick(index + 1)}
+										>
+											{index + 1}
+										</li>
+									);
+								})
+						: [...Array(data.length / numOfCoinsPerPage)]
+								.slice(10, 20)
+								.map((_, index) => {
+									// Render the number of pages in our Pagination section, based on the length of our newly created Array.
+									return (
+										<li
+											className={
+												page === index + 1
+													? 'selected-page'
+													: 'pagination-item pagination-item:hover'
+											}
+											key={index.id}
+											onClick={() => handleClick(index + 1)}
+										>
+											{index + 1}
+										</li>
+									);
+								})}
 					{/* Takes the current page, and adds 5. For example, if you're on page 4, clicking
 					the "..." will render page 9 data. */}
 					<li
 						className='pagination-item pagination-item:hover'
-						onClick={() => (page + 5 < (data.length / numOfCoinsPerPage) ? setPage(page + 5) : null)}
+						onClick={() =>
+							page + 5 < data.length / numOfCoinsPerPage
+								? setPage(page + 5)
+								: null
+						}
 					>
 						...
 					</li>

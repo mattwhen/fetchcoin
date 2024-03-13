@@ -45,22 +45,6 @@ const Nav = () => {
 		},
 	];
 
-	// const scrollHandler = () => {
-	// 	window.addEventListener('scroll', function (e) {
-	// 		// Get the new Value
-	// 		let currentScroll = window.pageYOffset;
-
-	// 		// IF the current scroll is greater than previousScroll, show Navbar
-	// 		if (currentScroll > previousScroll) {
-	// 			setShowNav(true);
-	// 		} else {
-	// 			setShowNav(false);
-	// 		}
-
-	// 		setPreviousScroll(currentScroll);
-	// 	});
-	// };
-
 	return (
 		<>
 			<nav className='bg-white sticky top-0 z-50 h-16 max-w-[1920px] shadow-sm'>
@@ -70,7 +54,7 @@ const Nav = () => {
 					id='desktopUl'
 				>
 					<div className='logo lg:flex lg:justify-center'>
-						<a href='/' className=''>
+						<a href='/fetchcoin' className=''>
 							<img
 								src={LightLogo}
 								className='cursor-pointer'

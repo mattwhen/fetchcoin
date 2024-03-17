@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { numberWithCommas, percentageChange, renderNumberFormatting } from '../../helpers/helperFunctions';
 import Loading from '../Loading/Loading';
 import Search from '../Search/Search';
 import Pagination from '../Pagination/Pagination';
@@ -73,47 +74,37 @@ export default function Table() {
 				'X-API-KEY': apiKey,
 			}),
 		};
+		const fetchData = async () => {
+			try {
+				// Render data initially.
+				fetch(url, options)
+					.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
+					.then((json) => {
+						setData(json.result);
+						setLoading(false);
+					})
+					.catch((error) => console.error(error));
+				
+					// Update the data in the table every 10 seconds.
+					let intervalData = setInterval(() => {
+						fetch(url, options)
+							.then((response) => response.json())
+							.then((json) => {
+								console.log('10 sec interval fetch');
+								setData(json.result);
+							})
+							.catch((error) => console.error(error));
+					}, 10000);
+			
+					return () => clearInterval(intervalData);
 
-		// Render data initially.
-		fetch(url, options)
-			.then((response) => response.json()) // Returns a promise which resolves to a JavaScript object.
-			.then((json) => {
-				console.log('Json data', json.result);
-				setData(json.result);
-				setLoading(false);
-			})
-			.catch((error) => console.error(error));
+			} catch (error) {
+				console.error('Error fetching data for Table component', error);
+			}
+		}
+		fetchData();
 
-		// Update the data in the table every 10 seconds.
-		let intervalData = setInterval(() => {
-			fetch(url, options)
-				.then((response) => response.json())
-				.then((json) => {
-					setData(json.result);
-				})
-				.catch((error) => console.error(error));
-		}, 10000);
-
-		return () => {
-			clearInterval(intervalData);
-		};
 	}, []);
-
-	// Adds comma formatting to "Price" column.
-	function numberWithCommas(num) {
-		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-	}
-
-	// Handles assigning classes to each of the price change elements depending if there was a positive, negative, or no change in it's price.
-	function percentageChange(currentChange) {
-		if (currentChange === 0) return 'no-change';
-		return currentChange > 0 ? 'green-change' : 'red-change';
-	}
-
-	// Simplifies the formatting for the Market Cap for a simplier look using the Intl method.
-	function renderNumberFormatting(num) {
-		return Intl.NumberFormat('en', { notation: 'compact' }).format(num);
-	}
 
 	// While fetching data, display spinning icon to user that the data is currently trying to render itself.
 	if (loading) return <Loading mapHeaders={mapHeaders} />;

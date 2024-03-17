@@ -26,22 +26,22 @@ const Nav = () => {
 		{
 			id: 0,
 			title: 'ABOUT',
-			link: '#about',
+			link: '/fetchcoin/#about',
 		},
 		{
 			id: 1,
 			title: 'CRYPTO',
-			link: '#crypto',
+			link: '/fetchcoin/#crypto',
 		},
 		{
 			id: 2,
 			title: 'MISSION',
-			link: '#mission',
+			link: '/fetchcoin/#mission',
 		},
 		{
 			id: 3,
 			title: 'CONTACT',
-			link: '#contact',
+			link: '/fetchcoin/#contact',
 		},
 	];
 

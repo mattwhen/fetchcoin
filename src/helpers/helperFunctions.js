@@ -1,7 +1,7 @@
 
 	// Adds comma formatting to "Price" column.
 	export function numberWithCommas(num) {
-		return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+		return '$' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 	}
 
 	// Handles assigning classes to each of the price change elements depending if there was a positive, negative, or no change in it's price.

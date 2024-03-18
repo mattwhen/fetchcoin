@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { numberWithCommas, percentageChange, renderNumberFormatting } from '../../helpers/helperFunctions';
 import Loading from '../Loading/Loading';
-import Search from '../Search/Search';
 import Pagination from '../Pagination/Pagination';
 import './Table.css';
 
@@ -12,7 +11,9 @@ export default function Table() {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
+
 	const numOfCoinsPerPage = 20;
+	const url = `https://openapiv1.coinstats.app/coins?limit=1000`;
 
 	const tableHeaders = [
 		{
@@ -60,11 +61,6 @@ export default function Table() {
 	}
 
 	useEffect(() => {
-		// Pass two arguments into our useEffect() hook: a Function and Array.
-		// callback function is called after the component renders.
-		// The second argument is called our dependencies array. This array should include all of the values that our side effect relies upon.
-
-		const url = `https://openapiv1.coinstats.app/coins?limit=1000`;
 		const options = {
 			method: 'GET',
 			headers: new Headers({
@@ -74,7 +70,8 @@ export default function Table() {
 				'X-API-KEY': apiKey,
 			}),
 		};
-		const fetchData = async () => {
+
+		const fetchData = () => {
 			try {
 				// Render data initially.
 				fetch(url, options)

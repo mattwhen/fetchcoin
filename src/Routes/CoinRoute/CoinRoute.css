@@ -1,0 +1,46 @@
+.container {
+	display: flex;
+	margin-top: 40px;
+	max-width: 2560px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.coin-container {
+    display: flex;
+    margin: 40px 20px;
+}
+
+.sidebar {
+	flex: 0.2;
+    margin-right: 25px;
+}
+
+.coin-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.name-header {
+    display: flex;
+    align-items: center;
+    
+}
+
+.graph-data {
+	flex: 0.6;
+}
+
+.news-section {
+	flex: 0.2;
+}
+
+.coin-price {
+	display: flex;
+}
+
+#coin-icon {
+	width: 30px;
+	height: 30px;
+}

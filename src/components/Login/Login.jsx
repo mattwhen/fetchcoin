@@ -22,7 +22,6 @@ const validate = (values) => {
 	return errors;
 };
 
-
 export default function Login() {
 	// Pass the useFormik() hook initial form values and a submit function that will
 	// be called when the form is submitted
@@ -41,9 +40,9 @@ export default function Login() {
 	return (
 		<>
 			<Nav />
-			<section className='bg-dark-blue h-[800px]'>
-				<div className='modal-container flex justify-center items-center relative'>
-					<div className='modal-content p-5 bg-white rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[400px] top-56'>
+			<section className='h-[800px]'>
+				<div className='modal-container flex justify-center items-center relative '>
+					<div className='modal-content p-5 bg-white border-2 border-blue-background rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[400px] top-56'>
 						<form onSubmit={formik.handleSubmit} className='text-black'>
 							<div>
 								<h2 className='text-center text-2xl lg:text-2xl'>Sign in</h2>
@@ -81,16 +80,19 @@ export default function Login() {
 							<div className='flex flex-col items-center mt-8'>
 								<button
 									type='submit'
-									className='block bg-yellow mb-4 rounded-md w-full h-8 hover:bg-silver'
+									className='block bg-gold-trim mb-4 rounded-md w-full h-8 hover:bg-gold-trim-hover'
 								>
 									Log in
 								</button>
-								<Link
-									className='mx-4 hvr-fade text-link-blue hover:text-link-blue-hover'
-									href='/signup'
-								>
-									Create Account
-								</Link>
+								<div className='flex flex-col items-center'>
+									Don't have an account?
+									<Link
+										to='/signup'
+										className='mx-4 rounded-md  text-blue-background hover:text-blue-background-hover'
+									>
+										Create Account
+									</Link>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -98,4 +100,4 @@ export default function Login() {
 			</section>
 		</>
 	);
-};
+}

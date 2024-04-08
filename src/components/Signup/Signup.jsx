@@ -106,9 +106,8 @@ export default function Signup() {
 								>
 									Create Account
 								</button>
-								<Link
+								<Link to="/login"
 									className='mx-4 hvr-fade text-link-blue hover:text-link-blue-hover'
-									href='/login'
 								>
 									Login
 								</Link>

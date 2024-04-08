@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import LightLogo from '../../images/Logo_whiteBg.png';
 import { useState, useEffect } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -79,18 +80,20 @@ const Nav = () => {
 					</div>
 					{/* Log in & Sign up buttons */}
 					<div className='hidden lg:flex'>
-						<a
-							href='/'
-							className='log-in rounded-full mr-2 text-center w-24 bg-white-hover text-black py-2 px-4 hover:bg-gold-trim-hover'
-						>
-							Log in
-						</a>
-						<a
-							href='/'
-							className='sign-up rounded-full text-center w-24 bg-gold-trim text-white py-2 px-4 hover:bg-gold-trim-hover'
-						>
-							Sign up
-						</a>
+						<Link to='/login'>
+							<button
+								className='log-in rounded-full mr-2 text-center w-24 bg-blue-background text-white py-2 px-4 hover:bg-blue-background-hover'
+							>
+								Log in
+							</button>
+						</Link>
+						<Link to='/signup'>
+							<button
+								className='sign-up rounded-full text-center w-24 bg-gold-trim text-white py-2 px-4 hover:bg-gold-trim-hover'
+							>
+								Sign up
+							</button>
+						</Link>
 					</div>
 				</div>
 				{/* Mobile view */}

@@ -120,7 +120,7 @@ export default function Table() {
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto mt-8'>
-					<thead className='flex items-center bg-silver-background'>
+					<thead className='flex items-center  bg-silver-background'>
 					{mapHeaders}
 					</thead>
 					<tbody className='w-40'>
@@ -138,7 +138,7 @@ export default function Table() {
 											className='h-14 hover-crypto flex items-center lg:hover:cursor-pointer'
 										>
 											<td className='RANK'>
-												<div className='ml-6 w-32 font-light'>{coin.rank}</div>
+												<div className='ml-6 w-32 font-light '>{coin.rank}</div>
 											</td>
 											<td>
 												<div className='NAME flex items-center pl-2 w-44 overflow-auto'>

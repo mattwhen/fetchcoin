@@ -30,7 +30,7 @@
     color: white;
 	justify-content: center;
 	--tw-bg-opacity: 1;
-	background-color: #BB9979;
+	background-color: #c07d0b;
 }
 
 .paginationBtn {
@@ -55,5 +55,5 @@
 	font-weight: 500;
 	font-size: 21px;
 	width: 32px;
-	background-color: #94785f;
+	background-color: #F19D0E;
 }

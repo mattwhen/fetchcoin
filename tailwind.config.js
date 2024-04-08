@@ -5,9 +5,11 @@ module.exports = {
   ],
   theme: {
     colors:{
-      'gold-trim': '#BB9979',
+      'gold-trim': '#F19D0E',
+      'gold-trim-hover': '#CA840C',
       'silver-background': '#F8FAFD',
-      'gold-trim-hover': '#94785f',
+      'blue-background': '#0E62F1',
+      'blue-background-hover': '#0C52CA',
       'white': '#FFFFFF',
       'white-hover': '#cfcccc',
       'footer-bg': '#e8e6e6',

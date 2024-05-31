@@ -8,27 +8,6 @@ const Footer = () => {
 		<footer className='px-6 bg-footer-bg'>
 			<div className='footerContainer flex flex-col lg:flex-row lg:justify-center lg:items-start py-14'>
 				<FooterLinks />
-				{/* {footerLinks.map(({ id, title, links }) => {
-					return (
-						<div className='my-4 mx-4'>
-							<h2 className='text-2xl'>{title}</h2>
-							<ul className='flex flex-col' key={id}>
-								<li className='cursor-pointer hvr-fade hover:text-yellow'>
-									{links[0]}
-								</li>
-								<li className='cursor-pointer hvr-fade hover:text-yellow'>
-									{links[1]}
-								</li>
-								<li className='cursor-pointer hvr-fade hover:text-yellow'>
-									{links[2]}
-								</li>
-								<li className='cursor-pointer hvr-fade hover:text-yellow'>
-									{links[3]}
-								</li>
-							</ul>
-						</div>
-					);
-				})} */}
 			</div>
 			<ul className='flex justify-center items-center space-x-5 mb-4'>
 				<li className='text-center rounded-full'>

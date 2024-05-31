@@ -10,6 +10,7 @@ module.exports = {
       'silver-background': '#F8FAFD',
       'blue-background': '#0E62F1',
       'blue-background-hover': '#0C52CA',
+      'blue-highlight': '#a2d2ff',
       'white': '#FFFFFF',
       'white-hover': '#cfcccc',
       'footer-bg': '#e8e6e6',

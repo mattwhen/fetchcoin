@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
-import Nav from '../Nav/Nav';
+import Nav from '../../components/Nav/Nav';
 
 const validate = (values) => {
 	const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{8,}$/;

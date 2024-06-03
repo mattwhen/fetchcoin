@@ -13,7 +13,8 @@ const App = () => {
 	const [filteredData, setFilteredData] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [page, setPage] = useState(1);
-	const [value, setValue] = useState('');
+	const [searchBarValue, setSearchBarValue] = useState('');
+
 
 	const apiKey = process.env.REACT_APP_KEY;
 
@@ -59,12 +60,12 @@ const App = () => {
 		fetchData();
 	}, []);
 
-	function handleChange(e) {
-		setValue(e.target.value);
+	function handleFilter(e) {
+		setSearchBarValue(e.target.value);
 		const filter = data.filter((coin) => {
-			return coin.name.includes(value.toUpperCase());
+			return coin.name.includes(searchBarValue.toUpperCase());
 		});
-		
+
 		setFilteredData(filter);
 		console.log(filteredData);
 	}
@@ -74,7 +75,11 @@ const App = () => {
 			<Nav />
 			<body>
 				<Intro />
-				<Search onChange={handleChange} value={value} filteredData={filteredData} />
+				<Search
+					onChange={handleFilter}
+					value={searchBarValue}
+					filteredData={filteredData}
+				/>
 				<Table
 					data={data}
 					setData={setData}

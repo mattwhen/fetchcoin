@@ -1,41 +1,35 @@
+import { useState } from 'react';
+import { sendSignInLinkToEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
-import { useFormik } from 'formik';
 import Nav from '../../components/Nav/Nav';
+import { auth } from '../../FirebaseConfig';
 
-const validate = (values) => {
-	const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{8,}$/;
-
-	const errors = {};
-	if (!values.email) {
-		errors.email = 'Required';
-	} else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-		errors.email = 'Invalid email address';
-	}
-
-	if (!values.password) {
-		errors.password = 'Required';
-	} else if (!regex.test(values.password)) {
-		errors.password =
-			'Must be a length of 8 characters, and contains a combination of letters, numbers, and special characters.';
-	}
-
-	return errors;
-};
 
 export default function Login() {
-	// Pass the useFormik() hook initial form values and a submit function that will
-	// be called when the form is submitted
-	const formik = useFormik({
-		initialValues: {
-			email: '',
-			password: '',
-		},
-		validate,
-		// Values: Our form's current values.
-		onSubmit: (values) => {
-			alert(JSON.stringify(values));
-		},
-	});
+	const [userInput, setUserInput] = useState({
+		email: '',
+		password: '',
+	})
+
+	function handleSubmit(event) {
+		event.preventDefault();
+
+		const email = userInput.email;
+		const password = userInput.password;
+
+		sendSignInLinkToEmail(auth, email, password)
+			.then(() => {
+				// Link was sent to user.
+				// Save the email locally (Local Storage) so the user is not prompted to input email 
+				// on same device.
+				window.localStorage.setItem('Email', email);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				console.error('Error sending email link: ', errorCode, errorMessage);
+			})
+	}
 
 	return (
 		<>
@@ -43,7 +37,7 @@ export default function Login() {
 			<section className='h-[800px]'>
 				<div className='modal-container flex justify-center items-center relative '>
 					<div className='modal-content p-5 bg-white border-2 border-blue-background rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[400px] top-56'>
-						<form onSubmit={formik.handleSubmit} className='text-black'>
+						<form onSubmit={handleSubmit}>
 							<div>
 								<h2 className='text-center text-2xl lg:text-2xl'>Sign in</h2>
 							</div>
@@ -56,12 +50,7 @@ export default function Login() {
 									name='email'
 									className='text-black border rounded-md py-1 px-2'
 									type='email'
-									onChange={formik.handleChange}
-									value={formik.values.email}
 								/>
-								{formik.errors.email ? (
-									<div className='text-red'>{formik.errors.email}</div>
-								) : null}
 								<label for='password' className='block mt-3'>
 									Password:
 								</label>
@@ -70,12 +59,7 @@ export default function Login() {
 									name='password'
 									className='text-black border rounded-md py-1 px-2'
 									type='password'
-									onChange={formik.handleChange}
-									value={formik.values.password}
 								/>
-								{formik.errors.password ? (
-									<div className='text-red'>{formik.errors.password}</div>
-								) : null}
 							</div>
 							<div className='flex flex-col items-center mt-8'>
 								<button

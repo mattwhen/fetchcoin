@@ -27,22 +27,22 @@ const Nav = () => {
 		{
 			id: 0,
 			title: 'ABOUT',
-			link: '/fetchcoin/#about',
+			link: '/#about',
 		},
 		{
 			id: 1,
 			title: 'CRYPTO',
-			link: '/fetchcoin/#crypto',
+			link: '/#crypto',
 		},
 		{
 			id: 2,
 			title: 'MISSION',
-			link: '/fetchcoin/#mission',
+			link: '/#mission',
 		},
 		{
 			id: 3,
 			title: 'CONTACT',
-			link: '/fetchcoin/#contact',
+			link: '/#contact',
 		},
 	];
 
@@ -55,7 +55,7 @@ const Nav = () => {
 					id='desktopUl'
 				>
 					<div className='logo lg:flex lg:justify-center'>
-						<a href='/fetchcoin' className=''>
+						<a href='/' className=''>
 							<img
 								src={LightLogo}
 								className='cursor-pointer'

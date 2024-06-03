@@ -8,12 +8,9 @@ import CoinRoute from './Routes/CoinRoute/CoinRoute';
 import Login from './Routes/Login/Login';
 import Signup from './Routes/Signup/Signup';
 
-
-
-
 const router = createBrowserRouter([
 	{
-		path: '/fetchcoin',
+		path: '/',
 		element: <App />,
 		errorElement: <ErrorPage />,
 	},

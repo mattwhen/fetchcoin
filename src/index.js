@@ -10,7 +10,7 @@ import Signup from './Routes/Signup/Signup';
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/fetchcoin',
 		element: <App />,
 		errorElement: <ErrorPage />,
 	},

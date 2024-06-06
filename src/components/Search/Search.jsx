@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../../src/App.css';
 import { AiOutlineSearch } from 'react-icons/ai';
-import './Search.css';
+import SearchIcon from '@mui/icons-material/Search';
+import './module.Search.css';
 
 const Search = ({
 	filteredData,
@@ -15,7 +16,10 @@ const Search = ({
 		const searchValue = e.target.value;
 		setSearchBarValue(searchValue);
 		const filter = data.filter((coin) => {
-			return coin.id.includes(searchBarValue.toLowerCase()) || coin.symbol.includes(searchBarValue.toUpperCase());
+			return (
+				coin.id.includes(searchBarValue.toLowerCase()) ||
+				coin.symbol.includes(searchBarValue.toUpperCase())
+			);
 		});
 
 		console.log(filter);
@@ -25,14 +29,19 @@ const Search = ({
 		<>
 			<span>{AiOutlineSearch}</span>
 			<div className='relative flex flex-col items-center justify-center my-4'>
-				<input
-					type='text'
-					className='h-12 border-2 border-gray-100 rounded-md w-3/4 text-sm mb-5 p-4 bg-gray-100 md:w-3/5 lg:w-1/4 lg:text-large'
-					placeholder='Search crypto by name or ticker symbol'
-					onChange={handleFilter}
-				></input>
+				<div className='searchContainer flex justify-center items-center relative w-[300px] md:w-[350px] lg:w-[500px] lg:text-large'>
+					<input
+						className='h-12 border-2 border-black rounded-md w-[230px] md:w-full lg:w-full text-sm py-4 px-10 bg-gray-100'
+						type='text'
+						placeholder='Search crypto by name or ticker symbol'
+						onChange={handleFilter}
+					/>
+					<i className='absolute opacity-50 left-10 min-[425px]:left-12 md:left-2'>
+						<SearchIcon />
+					</i>
+				</div>
 				<div className={value ? 'suggestionsContainer' : 'hidden'}>
-					<ul className='suggestions  top-96 lg:top-72 hover:cursor-pointer hover:bg-blue-background-hover'>
+					<ul className='suggestions top-96 lg:top-72 hover:cursor-pointer hover:bg-blue-background-hover'>
 						{filteredData?.slice(0, 10).map((coin) => {
 							return (
 								<li className='hover:bg-blue-highlight hover:text-white'>

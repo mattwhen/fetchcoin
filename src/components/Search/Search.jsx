@@ -12,7 +12,7 @@ const Search = ({
 	data,
 	value,
 }) => {
-	function handleFilter(e) {
+	function handleSuggestions(e) {
 		const searchValue = e.target.value;
 		setSearchBarValue(searchValue);
 		const filter = data.filter((coin) => {
@@ -21,10 +21,16 @@ const Search = ({
 				coin.symbol.includes(searchBarValue.toUpperCase())
 			);
 		});
-
-		console.log(filter);
+		
 		setFilteredData(filter);
 	}
+	
+	function handleMatches() {
+		// TODO: Highlight the user's value's and match it with the suggestions that render.
+		console.log(this.value);
+		// const regex = new RegExp(this.value);
+	}
+
 	return (
 		<>
 			<span>{AiOutlineSearch}</span>
@@ -34,7 +40,7 @@ const Search = ({
 						className='h-12 border-2 border-black rounded-md w-[230px] md:w-full lg:w-full text-sm py-4 px-10 bg-gray-100'
 						type='text'
 						placeholder='Search crypto by name or ticker symbol'
-						onChange={handleFilter}
+						onChange={handleSuggestions}
 					/>
 					<i className='absolute opacity-50 left-10 min-[425px]:left-12 md:left-2'>
 						<SearchIcon />
@@ -45,9 +51,14 @@ const Search = ({
 						{filteredData?.slice(0, 10).map((coin) => {
 							return (
 								<li className='hover:bg-blue-highlight hover:text-white'>
-									<span className='text-blue-background font-bold hover:text-white'>
-										{coin.name}
-									</span>
+									<div className='flex items-center'>
+										<span className='font-bold hover:text-white' onChange={handleMatches}>
+											{coin.name.toUpperCase()}
+										</span>
+										<span className='ml-4'>
+											<img width={30} height={30} src={coin.icon} alt={coin.name}></img>
+										</span>
+									</div>
 									<span>{coin.symbol}</span>
 								</li>
 							);

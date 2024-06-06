@@ -12,11 +12,13 @@ const Search = ({
 	value,
 }) => {
 	function handleFilter(e) {
-		setSearchBarValue(e.target.value);
+		const searchValue = e.target.value;
+		setSearchBarValue(searchValue);
 		const filter = data.filter((coin) => {
-			return coin.symbol.includes(searchBarValue.toUpperCase());
+			return coin.id.includes(searchBarValue.toLowerCase()) || coin.symbol.includes(searchBarValue.toUpperCase());
 		});
 
+		console.log(filter);
 		setFilteredData(filter);
 	}
 	return (

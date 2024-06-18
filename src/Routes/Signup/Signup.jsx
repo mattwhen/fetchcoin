@@ -1,96 +1,159 @@
-import { Link } from 'react-router-dom';
-import Nav from '../../components/Nav/Nav';
-import Button from '../../components/Button/Button';
-
-// Initialize Firebase and create a Firebase App object
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore/lite';
-import { getAuth, sendSignInLinkToEmail } from 'firebase/auth';
-import { useState } from 'react';
-import { auth, app } from '../../FirebaseConfig';
-
+import { db } from "../../FirebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Nav from "../../components/Nav/Nav";
+import Button from "../../components/Button/Button";
 
 const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+]{8,}$/;
 
 export default function Signup() {
 	const [userInput, setUserInput] = useState({
-		email: '',
+		firstName: "",
+		lastName: "",
+		email: "",
+		password: "",
+		confirmPassword: "",
+	});
+
+	const auth = getAuth();
+
+	// Listen for authentication state changes
+	onAuthStateChanged(auth, (user) => {
+		if (user) {
+			// User is signed in
+			console.log("User is signed in:", user);
+			// Update the UI or redirect to the dashboard
+		} else {
+			// User is signed out
+			console.log("User is signed out.");
+			// Redirect to login page or show sign-in options
+			window.location.href = "/login.html"; // Example of redirection
+		}
 	});
 
 	const handleUserInput = (e) => {
 		setUserInput({
 			...userInput,
-			[e.target.name]: [e.target.value]
-		})
-		console.log(userInput);
+			[e.target.name]: [e.target.value],
+		});
+		console.log(...userInput.email);
 	};
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
+	const handleSubmit = async (e) => {
+		e.preventDefault();
 
-		const email = userInput.email;
-
-		const actionCodeSettings = {
-			// URL you want to redirect back to. The domain (www.example.com) for this
-			// URL must be in the authorized domains list in the Firebase Console.
-			url: 'https://localhost:3000/',
-			// This must be true.
-			handleCodeInApp: true,
-			iOS: {
-			  bundleId: 'com.example.ios'
-			},
-			android: {
-			  packageName: 'com.example.android',
-			  installApp: true,
-			  minimumVersion: '12'
-			},
-			dynamicLinkDomain: 'example.page.link'
-		  };
-
-		sendSignInLinkToEmail(auth, email, actionCodeSettings)
-			.then(() => {
-				// Link was sent to user.
-				// Save the email locally (Local Storage) so the user is not prompted to input email 
-				// on same device.
-				window.localStorage.setItem('Email', email);
+		// Create a user
+		createUserWithEmailAndPassword(
+			auth,
+			...userInput.email,
+			...userInput.password
+		)
+			.then((userCreds) => {
+				// Signed Up
+				const user = userCreds.user;
+				console.log(user);
 			})
-			.then(() => console.log(window.localStorage.getItem('Email')))
 			.catch((error) => {
 				const errorCode = error.code;
 				const errorMessage = error.message;
-				console.error('Error sending email link: ', errorCode, errorMessage);
-			})
-	}
+				console.log("Error Signing up user: ", errorCode, errorMessage);
+			});
+
+		// Store First, Last, and email into a document in Firebase.
+		try {
+			const docRef = await addDoc(collection(db, "users"), {
+				first: userInput.firstName,
+				last: userInput.lastName,
+				email: userInput.email,
+			});
+			console.log("Document written with ID: ", docRef.id);
+		} catch (e) {
+			console.error("Error adding document: ", e);
+		}
+
+		// Clear the form upon submission.
+		setUserInput({
+			firstName: "",
+			lastName: "",
+			email: "",
+			password: "",
+			confirmPassword: "",
+		});
+	};
+
 	return (
 		<>
 			<Nav />
-			<section className='bg-dark-blue h-[800px]'>
-				<div className='modal-container flex justify-center items-center relative'>
-					<div className='modal-content p-5 bg-white rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[600px] top-56'>
-						<form onSubmit={handleSubmit} className='text-black'>
+			<section className="bg-dark-blue h-[800px]">
+				<div className="modal-container flex justify-center items-center relative">
+					<div className="modal-content p-5 bg-white rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[600px] top-56">
+						<form onSubmit={handleSubmit} className="text-black">
 							<div>
-								<h2 className='text-center text-2xl lg:text-2xl'>Sign up</h2>
+								<h2 className="text-center text-2xl lg:text-2xl">Sign up</h2>
 							</div>
-							<div className='flex flex-col justify-center w-full'>
-								<label for='email' className='block mt-3'>
-									Email:
+							<div className="flex flex-col justify-center w-full">
+								<label for="firstName" className="block mt-3">
+									First Name:
 								</label>
 								<input
-									name='email'
-									value={userInput.email}
+									name="firstName"
+									value={userInput.firstName}
 									onChange={handleUserInput}
-									className='text-black border rounded-md py-1 px-2'
-									type='email'
+									className="text-black border rounded-md py-1 px-2"
+									type="text"
 								/>
 								{/* TODO: Add error messages here. */}
 							</div>
-							<div className='flex flex-col items-center mt-8'>
-								<Button className='block bg-gold-trim  mb-4 rounded-md w-full h-8 hover:bg-silver hover:text-white hover:bg-gold-trim-hover'>
+							<div className="flex flex-col justify-center w-full">
+								<label for="last-name" className="block mt-3">
+									Last Name:
+								</label>
+								<input
+									name="lastName"
+									value={userInput.lastName}
+									onChange={handleUserInput}
+									className="text-black border rounded-md py-1 px-2"
+									type="text"
+								/>
+								{/* TODO: Add error messages here. */}
+							</div>
+							<div className="flex flex-col justify-center w-full">
+								<label for="email" className="block mt-3">
+									Email:
+								</label>
+								<input
+									name="email"
+									value={userInput.email}
+									onChange={handleUserInput}
+									className="text-black border rounded-md py-1 px-2"
+									type="email"
+								/>
+								{/* TODO: Add error messages here. */}
+							</div>
+							<div className="flex flex-col justify-center w-full">
+								<label for="password" className="block mt-3">
+									Password:
+								</label>
+								<input
+									name="password"
+									value={userInput.password}
+									onChange={handleUserInput}
+									className="text-black border rounded-md py-1 px-2"
+									type="password"
+								/>
+								{/* TODO: Add error messages here. */}
+							</div>
+							<div className="flex flex-col items-center mt-8">
+								<Button className="block bg-gold-trim  mb-4 rounded-md w-full h-8 hover:bg-silver hover:text-white hover:bg-gold-trim-hover">
 									Create Account
 								</Button>
+								<button>Submit</button>
 								<Link
-									to='/login'
-									className='mx-4 hvr-fade text-blue-background hover:text-blue-background-hover'
+									to="/login"
+									className="mx-4 hvr-fade text-blue-background hover:text-blue-background-hover"
 								>
 									Login
 								</Link>

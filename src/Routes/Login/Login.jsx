@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { sendSignInLinkToEmail, signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
-import { auth } from '../../FirebaseConfig';
+import Button from '../../components/Button/Button';
 
 
 export default function Login() {
@@ -17,18 +17,18 @@ export default function Login() {
 		const email = userInput.email;
 		const password = userInput.password;
 
-		sendSignInLinkToEmail(auth, email, password)
-			.then(() => {
-				// Link was sent to user.
-				// Save the email locally (Local Storage) so the user is not prompted to input email 
-				// on same device.
-				window.localStorage.setItem('Email', email);
-			})
-			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				console.error('Error sending email link: ', errorCode, errorMessage);
-			})
+		// sendSignInLinkToEmail(auth, email, password)
+		// 	.then(() => {
+		// 		// Link was sent to user.
+		// 		// Save the email locally (Local Storage) so the user is not prompted to input email 
+		// 		// on same device.
+		// 		window.localStorage.setItem('Email', email);
+		// 	})
+		// 	.catch((error) => {
+		// 		const errorCode = error.code;
+		// 		const errorMessage = error.message;
+		// 		console.error('Error sending email link: ', errorCode, errorMessage);
+		// 	})
 	}
 
 	return (
@@ -62,12 +62,12 @@ export default function Login() {
 								/>
 							</div>
 							<div className='flex flex-col items-center mt-8'>
-								<button
+								<Button
 									type='submit'
 									className='block bg-gold-trim mb-4 rounded-md w-full h-8 hover:bg-gold-trim-hover'
 								>
 									Log in
-								</button>
+								</Button>
 								<div className='flex flex-col items-center'>
 									Don't have an account?
 									<Link

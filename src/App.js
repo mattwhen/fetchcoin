@@ -60,25 +60,18 @@ const App = () => {
 		fetchData();
 	}, []);
 
-	function handleFilter(e) {
-		setSearchBarValue(e.target.value);
-		const filter = data.filter((coin) => {
-			return coin.name.includes(searchBarValue.toUpperCase());
-		});
-
-		setFilteredData(filter);
-		console.log(filteredData);
-	}
-
 	return (
 		<>
 			<Nav />
 			<body>
 				<Intro />
 				<Search
-					onChange={handleFilter}
 					value={searchBarValue}
+					setFilteredData={setFilteredData}
 					filteredData={filteredData}
+					searchBarValue={searchBarValue}
+					setSearchBarValue={setSearchBarValue}
+					data={data}
 				/>
 				<Table
 					data={data}

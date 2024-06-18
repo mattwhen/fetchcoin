@@ -29,25 +29,24 @@ export default function CoinRoute() {
 		fetchData();
 	}, [coinId]);
 
-	if (loading) {
-		return <div>Loading</div>;
-	}
-
 	return (
 		<>
 			<Nav />
-			{/* <h1>{coinId}</h1> */}
-			<div className='container'>
-				<div className='coin-container'>
-					<CoinInfo coinData={coinData} coinId={coinId} />
-					<div className='graph-data'>
-						<Graph />
-					</div>
-					<div className='news-section'>
-						<News />
+			{loading ? (
+				<div>Loading</div>
+			) : (
+				<div className='container'>
+					<div className='coin-container'>
+						<CoinInfo coinData={coinData} coinId={coinId} />
+						<div className='graph-data'>
+							<Graph />
+						</div>
+						<div className='news-section'>
+							<News />
+						</div>
 					</div>
 				</div>
-			</div>
+			)}
 			<Footer />
 		</>
 	);

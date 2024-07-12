@@ -1,6 +1,6 @@
 import { db } from "../../FirebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -19,20 +19,6 @@ export default function Signup() {
 	});
 
 	const auth = getAuth();
-
-	// Listen for authentication state changes
-	onAuthStateChanged(auth, (user) => {
-		if (user) {
-			// User is signed in
-			console.log("User is signed in:", user);
-			// Update the UI or redirect to the dashboard
-		} else {
-			// User is signed out
-			console.log("User is signed out.");
-			// Redirect to login page or show sign-in options
-			window.location.href = "/login.html"; // Example of redirection
-		}
-	});
 
 	const handleUserInput = (e) => {
 		setUserInput({
@@ -86,7 +72,7 @@ export default function Signup() {
 
 	return (
 		<>
-			<Nav />
+			<Nav/>
 			<section className="bg-dark-blue h-[800px]">
 				<div className="modal-container flex justify-center items-center relative">
 					<div className="modal-content p-5 bg-white rounded-lg absolute max-w-[425px] w-10/12 lg:w-1/3 h-7/8 max-h-[600px] top-56">
@@ -95,7 +81,7 @@ export default function Signup() {
 								<h2 className="text-center text-2xl lg:text-2xl">Sign up</h2>
 							</div>
 							<div className="flex flex-col justify-center w-full">
-								<label for="firstName" className="block mt-3">
+								<label htmlFor="firstName" className="block mt-3">
 									First Name:
 								</label>
 								<input
@@ -108,7 +94,7 @@ export default function Signup() {
 								{/* TODO: Add error messages here. */}
 							</div>
 							<div className="flex flex-col justify-center w-full">
-								<label for="last-name" className="block mt-3">
+								<label htmlFor="last-name" className="block mt-3">
 									Last Name:
 								</label>
 								<input
@@ -121,7 +107,7 @@ export default function Signup() {
 								{/* TODO: Add error messages here. */}
 							</div>
 							<div className="flex flex-col justify-center w-full">
-								<label for="email" className="block mt-3">
+								<label htmlFor="email" className="block mt-3">
 									Email:
 								</label>
 								<input
@@ -134,7 +120,7 @@ export default function Signup() {
 								{/* TODO: Add error messages here. */}
 							</div>
 							<div className="flex flex-col justify-center w-full">
-								<label for="password" className="block mt-3">
+								<label htmlFor="password" className="block mt-3">
 									Password:
 								</label>
 								<input

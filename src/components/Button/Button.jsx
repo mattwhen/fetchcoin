@@ -2,7 +2,7 @@ import React from 'react';
 const Button = ({ children, className }) => {
 	return (
 		<button
-			type='submit'
+			type='submit' 
 			className={className}
 		>
 			{children}

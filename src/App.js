@@ -63,7 +63,6 @@ const App = () => {
 	return (
 		<>
 			<Nav />
-			<body>
 				<Intro />
 				<Search
 					value={searchBarValue}
@@ -83,7 +82,6 @@ const App = () => {
 				/>
 				<Mission />
 				<Contact />
-			</body>
 			<Footer />
 		</>
 	);

@@ -1,119 +1,154 @@
-import { useState } from 'react';
-import './Pagination.css';
+import { useState } from "react";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
+import "./Pagination.css";
 
-const Pagination = ({
-	data,
-	page,
-	setPage,
-	numOfCoinsPerPage,
-	handleClick,
-}) => {
-	const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ data, page, setPage, numOfCoinsPerPage }) => {
+	const [currentRange, setCurrentRange] = useState([1, 2, 3]);
 
+	const handleNextClick = () => {
+		if (page === 50) {
+			return null;
+		}
+
+		const newPage = page + 1;
+		const isInRange = currentRange.includes(newPage);
+		console.log(newPage);
+
+		if (isInRange) {
+			setPage(page + 1);
+		}
+
+		// IF newPage is NOT within the range, we update the currentRange.
+		else {
+			// Update the currentRange with a new set of numbers that extend from the previous set of numbers (e.g. 1-5 to 6-10).
+			// Use map() to increment the currentRange by one.
+			// Update setPage() to the new data range.
+			setPage(page + 1);
+			setCurrentRange(currentRange.map((num) => num + 1));
+		}
+	};
+
+	const handlePreviousClick = () => {
+		// If the previous page falls outside of the currentRange, do something.
+		// Update the current range values to the last five digits.
+
+		const prevPage = page - 1; // [6, 7, 8, 9, 10] => [1, 2, 3, 4, 5]
+		const isInRange = currentRange.includes(prevPage);
+
+		if (page === 1) {
+			return null;
+		}
+
+		if (isInRange) {
+			setPage(page - 1);
+		} else {
+			setCurrentRange(currentRange.map((num) => num - 1));
+			setPage(page - 1);
+		}
+	};
+
+	const displayFirstPage = () => {
+		setPage(1);
+		setCurrentRange([1, 2, 3, 4, 5]);
+	};
+
+	const handlePageSkipAhead = () => {
+		// IF page is greater than 50? Don't do anything
+		if (page > 50) {
+			return null;
+		}
+		if(page + 5 < data.length / numOfCoinsPerPage) {
+			setPage(page + 5);
+			setCurrentRange(currentRange.map((num) => num + 5))
+		}
+	};
+
+	const handlePageSkipBehind = () => {
+		// If page is less than 1? Don't do anything.
+		if (page < 1) {
+			return null;
+		}
+	};
+
+	const handleDisplayLastPage = () => {
+		setPage(data.length / numOfCoinsPerPage);
+	};
 	return (
 		<>
-			<div className='flex justify-center my-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex'>
-				<ul className='flex justify-evenly items-center w-full md:w-1/2'>
+			<div className="flex justify-center my-5 lg:max-w-4xl lg:m-auto lg:mt-5 lg:flex">
+				<ul className="flex justify-evenly items-center w-full md:w-1/2">
 					{/* Renders the PREVIOUS page of Coin data */}
 					<li
-						className='hidden md:cursor-pointer md:mr-8 md:flex md:align-middle'
-						onClick={() => (page <= 1 ? null : setPage(page - 1))}
+						className="hidden md:cursor-pointer md:mr-8 md:flex md:align-middle"
+						onClick={handlePreviousClick}
 					>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							fill='none'
-							viewBox='0 0 24 24'
-							strokeWidth='1.5'
-							stroke='currentColor'
-							className='w-6 h-6 pagination-item:hover'
-						>
-							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								d='M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18'
-							/>
-						</svg>
+						<FaArrowLeftLong className="w-6 h-6" />
 					</li>
-					{/* Create a new array with our Coin data, taking the total amount of coins in our API call
-							and divide it by the number of coins rendered onto the page.*/}
-					{/* TODO: When the user is on the 5th page, render page numbers from 5 - 10 and so on... */}
-					{page < 5
-						? [...Array(data.length / numOfCoinsPerPage)]
-								.slice(0, 5)
-								.map((_, index) => {
-									// Render the number of pages in our Pagination section, based on the length of our newly created Array.
-									return (
-										<li
-											className={
-												page === index + 1
-													? 'selected-page'
-													: 'pagination-item pagination-item:hover'
-											}
-											key={index.id}
-											onClick={() => handleClick(index + 1)}
-										>
-											{index + 1}
-										</li>
-									);
-								})
-						: [...Array(data.length / numOfCoinsPerPage)]
-								.slice(10, 20)
-								.map((_, index) => {
-									// Render the number of pages in our Pagination section, based on the length of our newly created Array.
-									return (
-										<li
-											className={
-												page === index + 1
-													? 'selected-page'
-													: 'pagination-item pagination-item:hover'
-											}
-											key={index.id}
-											onClick={() => handleClick(index + 1)}
-										>
-											{index + 1}
-										</li>
-									);
-								})}
-					{/* Takes the current page, and adds 5. For example, if you're on page 4, clicking
-					the "..." will render page 9 data. */}
+					{/* Not visible until page count is greater than 5 */}
+					{page > 3 ? (
+						<li
+							className="pagination-item pagination-item:hover"
+							onClick={displayFirstPage}
+						>
+							{" "}
+							1
+						</li>
+					) : null}
+					{page > 3 ? (
+						<li
+							className="pagination-item pagination-item:hover"
+							onClick={handlePageSkipBehind}
+						>
+							{" "}
+							...
+						</li>
+					) : null}
+					{/* Not visible until page count is greater than 5 */}
+					{page > 5
+						? currentRange.slice(2, 5).map((num, index) => (
+								<li
+									// Apply styling based on the current page being selected.
+									onClick={() => setPage(num)}
+									className={
+										page === num
+											? "selected-page"
+											: "pagination-item pagination-item:hover"
+									}
+								>
+									{num}
+								</li>
+						  ))
+						: currentRange.map((num, index) => (
+							<li
+								// Apply styling based on the current page being selected.
+								onClick={() => setPage(num)}
+								className={
+									page === num
+										? "selected-page"
+										: "pagination-item pagination-item:hover"
+								}
+							>
+								{num}
+							</li>
+					  ))}
 					<li
-						className='pagination-item pagination-item:hover'
-						onClick={() =>
-							page + 5 < data.length / numOfCoinsPerPage
-								? setPage(page + 5)
-								: null
-						}
+						className="pagination-item pagination-item:hover"
+						onClick={handlePageSkipAhead}
 					>
+						{" "}
 						...
 					</li>
-					{/* Displays the LAST page of Coin data */}
 					<li
-						className='pagination-item pagination-item:hover'
-						onClick={() => setPage(data.length / numOfCoinsPerPage)}
+						className="pagination-item pagination-item:hover"
+						onClick={handleDisplayLastPage}
 					>
+						{/* Displays the LAST page of Coin data */}
 						{data.length / numOfCoinsPerPage}
 					</li>
 					{/* Renders the NEXT page of Coin data */}
-					<li
-						className='hidden md:cursor-pointer md:ml-8 md:flex md:align-middle'
-						onClick={() =>
-							page >= data.length / numOfCoinsPerPage ? null : setPage(page + 1)
-						}
-					>
-						<svg
-							xmlns='http://www.w3.org/2000/svg'
-							fill='none'
-							viewBox='0 0 24 24'
-							strokeWidth='1.5'
-							stroke='currentColor'
-							className='w-6 h-6'
-						>
-							<path
-								strokeLinecap='round'
-								strokeLinejoin='round'
-								d='M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3'
-							/>
-						</svg>
+					<li className="hidden md:cursor-pointer md:ml-8 md:flex md:align-middle">
+						<FaArrowRightLong className="w-6 h-6" onClick={handleNextClick} />
 					</li>
 				</ul>
 			</div>

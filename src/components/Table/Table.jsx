@@ -11,9 +11,7 @@ import './Table.css';
 
 export default function Table({
 	data,
-	setData,
 	loading,
-	setLoading,
 	page,
 	setPage,
 }) {
@@ -162,13 +160,6 @@ export default function Table({
 				</table>
 			</section>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
-			<Pagination
-				data={data}
-				page={page}
-				setPage={setPage}
-				numOfCoinsPerPage={numOfCoinsPerPage}
-				handleClick={(currentPage) => setPage(currentPage)}
-			/>
 		</>
 	);
 }

@@ -48,7 +48,7 @@ export default function FooterLinks() {
 		<>
 			{footerLinks.map((link) => {
 				return (
-					<div className='my-4 mx-4'>
+					<div key={link.id} className='my-4 mx-4'>
 						<h2 className='text-2xl'>{link.title}</h2>
 						<ul className='flex flex-col' key={link.id}>
 							{link.links.map((item, index) => <li key={index} className='cursor-pointer hvr-fade hover:text-gold-trim-hover'>{item}</li>)}

@@ -11,9 +11,7 @@ import './Table.css';
 
 export default function Table({
 	data,
-	setData,
 	loading,
-	setLoading,
 	page,
 	setPage,
 }) {
@@ -50,38 +48,32 @@ export default function Table({
 		},
 	];
 
-	const mapHeaders = tableHeaders.map((coin) => (
-		<tr
-			key={coin.id}
-			className='text-black font-normal ml-4 flex items-center w-full h-10'
-		>
-			{coin.name}
-		</tr>
-	));
-
-	function handleClick(currentPage) {
-		setPage(currentPage);
-	}
-
 	// While fetching data, display spinning icon to user that the data is currently trying to render itself.
-	if (loading) return <Loading mapHeaders={mapHeaders} />;
+	if (loading) return <Loading/>;
 
 	return (
 		<>
-			<div id='crypto' className=''>
+			<div id='crypto'>
 				<Pagination
 					data={data}
 					page={page}
 					setPage={setPage}
 					numOfCoinsPerPage={numOfCoinsPerPage}
-					handleClick={handleClick}
+					handleClick={(currentPage) => setPage(currentPage)}
 				/>
 			</div>
 			{/* <------------------------------------ TABLE SECTION ------------------------------> */}
 			<section className='overflow-x-auto rounded-md mx-2 lg:max-w-5xl lg:m-auto'>
 				<table className='table-auto mt-8'>
 					<thead className='flex items-center  bg-silver-background'>
-						{mapHeaders}
+						{tableHeaders.map((coin) => (
+		<tr
+			key={coin.id}
+			className='text-black font-normal ml-4 flex items-center w-full h-10'
+		>
+			{coin.name}
+		</tr>
+	))}
 					</thead>
 					<tbody className='w-40'>
 						{/* Render Coinstats API data */}
@@ -168,13 +160,6 @@ export default function Table({
 				</table>
 			</section>
 			{/*  <------------------------------------ END TABLE SECTION ------------------------------> */}
-			<Pagination
-				data={data}
-				page={page}
-				setPage={setPage}
-				numOfCoinsPerPage={numOfCoinsPerPage}
-				handleClick={handleClick}
-			/>
 		</>
 	);
 }

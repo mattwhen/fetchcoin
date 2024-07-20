@@ -35,7 +35,7 @@ const Contact = () => {
 				</p>
 				{fields.map((item) => {
 					return (
-						<div className='flex space-x-4'>
+						<div key={item.id} className='flex space-x-4'>
 							<img src={item.icon} className='w-4' alt='' />
 							<p key={item.id} className='text-lg leading-10'>
 								{item.text}

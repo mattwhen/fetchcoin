@@ -1,6 +1,5 @@
 import React from 'react';
 import '../../../src/App.css';
-import { AiOutlineSearch } from 'react-icons/ai';
 import SearchIcon from '@mui/icons-material/Search';
 import './module.Search.css';
 
@@ -33,7 +32,6 @@ const Search = ({
 
 	return (
 		<>
-			<span>{AiOutlineSearch}</span>
 			<div className='relative flex flex-col items-center justify-center my-4'>
 				<div className='searchContainer flex justify-center items-center relative w-[300px] md:w-[350px] lg:w-[500px] lg:text-large'>
 					<input

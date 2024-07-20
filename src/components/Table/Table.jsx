@@ -53,7 +53,7 @@ export default function Table({
 
 	return (
 		<>
-			<div id='crypto' className=''>
+			<div id='crypto'>
 				<Pagination
 					data={data}
 					page={page}
